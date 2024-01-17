@@ -13,6 +13,10 @@ namespace OnlinePharmacy.Server.Configurations.Entities
                 {
                     Id = 1,
                     Name = "CeraVe Cleanser",
+                    Category = "Cleansers",
+                    Price = 20.00,
+                    Description = "Description",
+                    Quantity = 9,
                     DateCreated = DateTime.Now,
                     DateUpdated = DateTime.Now,
                     CreatedBy = "System",
@@ -22,6 +26,10 @@ namespace OnlinePharmacy.Server.Configurations.Entities
                 {
                     Id = 2,
                     Name = "Cetaphil Moisturizer",
+                    Category = "Moisturizers",
+                    Price = 20.00,
+                    Description = "Description",
+                    Quantity = 8,
                     DateCreated = DateTime.Now,
                     DateUpdated = DateTime.Now,
                     CreatedBy = "System",
