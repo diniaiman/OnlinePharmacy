@@ -1,0 +1,30 @@
+﻿@page "/appointments/"
+@inject HttpClient _client
+@inject IJSRuntime js
+@attribute [Authorize]
+
+<h3 class="card-title">Skincare Appointments</h3>
+<br />
+
+@code {
+    private List<Appointment>? Appointments;
+
+    protected async override Task OnInitializedAsync()
+    {
+        Appointments = await _client.GetFromJsonAsync<List<Appointment>>($"{Endpoints.AppointmentsEndpoint}");
+    }
+
+    async Task Delete(int appointmentId)
+    {
+        if (Appointments != null)
+        {
+            var appointment = Appointments.First(q => q.Id == appointmentId);
+            var confirm = await js.InvokeAsync<bool>("confirm", $"Do you want to delete {appointment.Name}?");
+            if (confirm)
+            {
+                await _client.DeleteAsync($"{Endpoints.AppointmentsEndpoint}/{appointmentId}");
+                await OnInitializedAsync();
+            }
+        }
+    }
+}
