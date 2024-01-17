@@ -4,6 +4,8 @@ using Microsoft.EntityFrameworkCore;
 using OnlinePharmacy.Server.Data;
 using OnlinePharmacy.Server.Models;
 using Microsoft.AspNetCore.Identity;
+using OnlinePharmacy.Server.Repository;
+using OnlinePharmacy.Server.IRepository;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -21,6 +23,8 @@ builder.Services.AddIdentityServer()
 
 builder.Services.AddAuthentication()
     .AddIdentityServerJwt();
+
+builder.Services.AddTransient<IUnitOfWork, UnitOfWork>();
 
 builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
