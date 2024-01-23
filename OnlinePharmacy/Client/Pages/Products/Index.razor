@@ -9,6 +9,47 @@
 <h3 class="card title">Products</h3>
 <br />
 
+<a href="/products/create" class="btn btn-secondary">
+    <span class="oi oi-plus"></span>
+    Create New Products
+</a>
+<br />
+<br />
+
+@if (Products == null)
+{
+    <div class="alert alert-info">Loading Products...</div>
+}
+else
+{
+    <table class="table table-responsive">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var product in Products)
+            {
+                <tr>
+                    <td>@product.Name</td>
+                    <td>
+                        <a href="/product/view/@product.Id" class="btn btn-primary">
+                            <span class="oi oi-book"></span>
+                        </a>
+                        <a href="/product/edit/@product.Id" class="btn btn-warning">
+                            <span class="oi oi-pencil"></span>
+                        </a>
+                        <button class="btn btn-danger" @onclick="@(()=>Delete(product.Id))">
+                            <span class="oi oi-delete"></span>
+                        </button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
 
 @code {
     private List<Product>? Products;
