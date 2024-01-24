@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using OnlinePharmacy.Server.IRepository;
+using OnlinePharmacy.Server.Repository;
 using OnlinePharmacy.Shared.Domain;
 using OnlinePharmacy.Server.Data;
 

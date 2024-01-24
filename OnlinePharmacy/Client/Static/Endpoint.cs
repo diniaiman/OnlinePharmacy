@@ -6,7 +6,8 @@
 
         public static readonly string ProductsEndpoint = $"{Prefix}/products";
         public static readonly string AppointmentsEndpoint = $"{Prefix}/appointments";
-        //public static readonly string ColoursEndpoint = $"{Prefix}/colours";
+        public static readonly string PrescriptionsEndpoint = $"{Prefix}/prescriptions";
+        public static readonly string OrdersEndpoint = $"{Prefix}/orders";
         //public static readonly string VehiclesEndpoint = $"{Prefix}/vehicles";
         //public static readonly string CustomersEndpoint = $"{Prefix}/customers";
         //public static readonly string BookingsEndpoint = $"{Prefix}/bookings";

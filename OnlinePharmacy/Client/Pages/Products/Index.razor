@@ -2,16 +2,13 @@
 @inject HttpClient _client
 @inject IJSRuntime js
 @attribute [Authorize]
-@using OnlinePharmacy.Shared.Domain
 
-
-
-<h3 class="card title">Products</h3>
+<h3 class="card-title">Skincare Products</h3>
 <br />
 
 <a href="/products/create" class="btn btn-secondary">
     <span class="oi oi-plus"></span>
-    Create New Products
+    Create New Product
 </a>
 <br />
 <br />
@@ -25,7 +22,11 @@ else
     <table class="table table-responsive">
         <thead>
             <tr>
-                <th>Name</th>
+                <th>Product Name</th>
+                <th>Product Price</th>
+                <th>Product Description</th>
+                <th>Product Quantity</th>
+                <th>Product Category</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -34,11 +35,15 @@ else
             {
                 <tr>
                     <td>@product.Name</td>
+                    <td>@product.Price</td>
+                    <td>@product.Description</td>
+                    <td>@product.Quantity</td>
+                    <td>@product.Category</td>
                     <td>
-                        <a href="/product/view/@product.Id" class="btn btn-primary">
+                        <a href="/products/view/@product.Id" class="btn btn-primary">
                             <span class="oi oi-book"></span>
                         </a>
-                        <a href="/product/edit/@product.Id" class="btn btn-warning">
+                        <a href="/products/edit/@product.Id" class="btn btn-warning">
                             <span class="oi oi-pencil"></span>
                         </a>
                         <button class="btn btn-danger" @onclick="@(()=>Delete(product.Id))">
@@ -72,5 +77,4 @@ else
             }
         }
     }
-
 }
