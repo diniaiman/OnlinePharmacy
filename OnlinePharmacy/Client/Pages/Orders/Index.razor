@@ -3,47 +3,51 @@
 @inject IJSRuntime js
 @attribute [Authorize]
 
+<h3 class="card-title">Skincare Orders</h3>
+<br />
 
 <a href="/orders/create" class="btn btn-secondary">
     <span class="oi oi-plus"></span>
-    Create New Orders
+    Create New Order
 </a>
 <br />
 <br />
 
 @if (Orders == null)
 {
-<div class="alert alert-info">Loading Orders...</div>
+    <div class="alert alert-info">Loading Orders...</div>
 }
 else
 {
-<table class="table table-responsive">
-    <thead>
-        <tr>
-            <th>Appoointment Date</th>
-            <th>Actions</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var order in Orders)
-        {
+    <table class="table table-responsive">
+        <thead>
             <tr>
-                <td>@order.Order_Date</td>
-                <td>
-                    <a href="/orders/view/@order.Id" class="btn btn-primary">
-                        <span class="oi oi-book"></span>
-                    </a>
-                    <a href="/orders/edit/@order.Id" class="btn btn-warning">
-                        <span class="oi oi-pencil"></span>
-                    </a>
-                    <button class="btn btn-danger" @onclick="@(()=>Delete(order.Id))">
-                        <span class="oi oi-delete"></span>
-                    </button>
-                </td>
+                <th>Order Date</th>
+                <th>Order Status</th>
+                <th>Actions</th>
             </tr>
-        }
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            @foreach (var order in Orders)
+            {
+                <tr>
+                    <td>@order.Order_Date</td>
+                    <td>@order.Order_Status</td>
+                    <td>
+                        <a href="/orders/view/@order.Id" class="btn btn-primary">
+                            <span class="oi oi-book"></span>
+                        </a>
+                        <a href="/orders/edit/@order.Id" class="btn btn-warning">
+                            <span class="oi oi-pencil"></span>
+                        </a>
+                        <button class="btn btn-danger" @onclick="@(()=>Delete(order.Id))">
+                            <span class="oi oi-delete"></span>
+                        </button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
 
 
 }

@@ -22,7 +22,9 @@ else
     <table class="table table-responsive">
         <thead>
             <tr>
-                <th>Appoointment Date</th>
+                <th>Appointment Date</th>
+                <th>Appointment Time</th>
+                <th>Appointment Status</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -31,6 +33,8 @@ else
             {
                 <tr>
                     <td>@appointment.Appointment_Date</td>
+                    <td>@appointment.Appointment_Time</td>
+                    <td>@appointment.Appointment_Status</td>
                     <td>
                         <a href="/appointments/view/@appointment.Id" class="btn btn-primary">
                             <span class="oi oi-book"></span>
