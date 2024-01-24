@@ -3,7 +3,8 @@
 @inject IJSRuntime js
 @attribute [Authorize]
 
-<h3 class="card-title">Skincare Products</h3>
+
+<h3 class="card=title">Skincare Products</h3>
 <br />
 
 <a href="/products/create" class="btn btn-secondary">
@@ -15,7 +16,7 @@
 
 @if (Products == null)
 {
-    <div class="alert alert-info">Loading Products...</div>
+    <div class="alert alert-info">Loading Products . . .</div>
 }
 else
 {
@@ -23,10 +24,10 @@ else
         <thead>
             <tr>
                 <th>Product Name</th>
-                <th>Product Price</th>
-                <th>Product Description</th>
-                <th>Product Quantity</th>
-                <th>Product Category</th>
+                <th>Price ($)</th>
+                <th>Description</th>
+                <th>Quantity</th>
+                <th>Category</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -40,10 +41,10 @@ else
                     <td>@product.Quantity</td>
                     <td>@product.Category</td>
                     <td>
-                        <a href="/products/view/@product.Id" class="btn btn-primary">
+                        <a href="/product/view/@product.Id" class="btn btn-primary">
                             <span class="oi oi-book"></span>
                         </a>
-                        <a href="/products/edit/@product.Id" class="btn btn-warning">
+                        <a href="/product/edit/@product.Id" class="btn btn-warning">
                             <span class="oi oi-pencil"></span>
                         </a>
                         <button class="btn btn-danger" @onclick="@(()=>Delete(product.Id))">
@@ -55,6 +56,7 @@ else
         </tbody>
     </table>
 }
+
 
 @code {
     private List<Product>? Products;
@@ -77,4 +79,4 @@ else
             }
         }
     }
-}}
+}

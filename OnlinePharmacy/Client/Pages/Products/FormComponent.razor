@@ -1,0 +1,59 @@
+﻿@using OnlinePharmacy.Shared.Domain
+
+
+<EditForm Model="@product" OnValidSubmit="@OnValidSubmit">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <div class="form-group">
+        <label>Name: </label>
+        <div>
+            <InputText @bind-Value="@product.Name" class="form-control" />
+            <ValidationMessage For="@(() => product.Name)" />
+        </div>
+    </div>
+    <div class="form-group">
+        <label>Price: </label>
+        <div>
+            <InputNumber @bind-Value="@product.Price" class="form-control" />
+            <ValidationMessage For="@(() => product.Price)" />
+        </div>
+    </div>
+    <div class="form-group">
+        <label>Description: </label>
+        <div>
+            <InputText @bind-Value="@product.Description" class="form-control" />
+            <ValidationMessage For="@(() => product.Description)" />
+        </div>
+    </div>
+    <div class="form-group">
+        <label>Quantity: </label>
+        <div>
+            <InputNumber @bind-Value="@product.Quantity" class="form-control" />
+            <ValidationMessage For="@(() => product.Quantity)" />
+        </div>
+    </div>
+    <div class="form-group">
+        <label>Category: </label>
+        <div>
+            <InputText @bind-Value="@product.Category" class="form-control" />
+            <ValidationMessage For="@(() => product.Category)" />
+        </div>
+    </div>
+
+    <br />
+    <br />
+
+    <button type="submit" class="btn btn-success btn-block">
+        @ButtonText
+    </button>
+
+</EditForm>
+
+
+@code {
+    [Parameter] public Product? product { get; set; }
+    [Parameter] public string ButtonText { get; set; } = "Save";
+    [Parameter] public EventCallback OnValidSubmit { get; set; }
+
+}
