@@ -22,6 +22,8 @@ namespace OnlinePharmacy.Server.Data
         public DbSet<Order> Orders { get; set; }
         public DbSet<Prescription> Prescriptions { get; set; }
         public DbSet<Appointment> Appointments { get; set; }
+        public DbSet<PrescriptionItem> PrescriptionItems { get; set; }
+        public DbSet<OrderItem> OrderItems { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
