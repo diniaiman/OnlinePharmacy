@@ -1,0 +1,69 @@
+﻿@inject HttpClient _client
+
+<EditForm Model="@prescription" OnValidSubmit="OnValidSubmit">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <fieldset disabled="@Disabled">
+        <div class="form-group">
+            <label>User: </label>
+            <div>
+                <InputSelect @bind-Value="prescription.UserId" class="form-control">
+                    <option value="">-- Select User --</option>
+                    @if (Users != null)
+                    {
+                        foreach (var user in Users)
+                        {
+                            <option value="@user.Id">@user.Username </option>
+                        }
+                    }
+                </InputSelect>
+                <ValidationMessage For="@(() => prescription.UserId)" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>Prescription Date: </label>
+            <div>
+                <InputDate @bind-Value="@prescription.DateOut" class="form-control" />
+                <ValidationMessage For="@(() => prescription.DateOut)" />
+            </div>
+        </div>
+
+        @if (prescription.Id > 0)
+        {
+            <div class="form-group">
+                <label>Date In: </label>
+                <div>
+                    <InputDate @bind-Value="@prescription.DateIn" class="form-control" />
+                    <ValidationMessage For="@(() => prescription.DateIn)" />
+                </div>
+            </div>
+        }
+    </fieldset>
+
+    <br />
+    <br />
+
+    @if (!Disabled)
+    {
+        <button type="submit" class="btn btn-success btn-block">
+            @ButtonText
+        </button>
+    }
+    <BackToList Target="prescriptions" />
+</EditForm>
+
+@code {
+    [Parameter] public bool Disabled { get; set; } = false;
+    [Parameter] public Prescription? prescription { get; set; }
+    [Parameter] public string ButtonText { get; set; } = "Save";
+    [Parameter] public EventCallback OnValidSubmit { get; set; }
+
+    private IList<User>? Users;
+
+    protected async override Task OnInitializedAsync()
+    {
+        Users = await _client.GetFromJsonAsync<List<User>>($"{Endpoints.UsersEndpoint}");
+    }
+}
