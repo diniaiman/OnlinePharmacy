@@ -3,17 +3,20 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using OnlinePharmacy.Server.Data;
 
 #nullable disable
 
-namespace OnlinePharmacy.Server.Data.Migrations
+namespace OnlinePharmacy.Server.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240125083116_newdb")]
+    partial class newdb
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -396,7 +399,7 @@ namespace OnlinePharmacy.Server.Data.Migrations
                         {
                             Id = "3781efa7-66dc-47f0-860f-e506d04102e4",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "96fbc9b6-be0f-4954-b2b1-0d4bcdd41679",
+                            ConcurrencyStamp = "ff4057fb-115d-4190-9eb7-288501c80fc1",
                             Email = "admin@localhost.com",
                             EmailConfirmed = false,
                             FirstName = "Admin",
@@ -404,9 +407,9 @@ namespace OnlinePharmacy.Server.Data.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@LOCALHOST.COM",
                             NormalizedUserName = "ADMIN@LOCALHOST.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEOmFqYqOlH+BO9rlQUQnGlmORAgFDM51J6RULW5Gd76bKYGyrbGbaHYADVpM2pVYeA==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEO6Y4QMO7XqHVMtY0vm3xsGk2g96zQbFy2PLmlALKa21pHzL1FXR568PWF+urzAesQ==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "a07548e1-0c74-4fed-8fd2-6b5ed16764f1",
+                            SecurityStamp = "762fd8dd-9270-4b20-af0b-6d702c8dc16c",
                             TwoFactorEnabled = false,
                             UserName = "admin@localhost.com"
                         });
@@ -432,6 +435,9 @@ namespace OnlinePharmacy.Server.Data.Migrations
                     b.Property<string>("CreatedBy")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("CustomerId")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("DateCreated")
                         .HasColumnType("datetime2");
 
@@ -450,16 +456,59 @@ namespace OnlinePharmacy.Server.Data.Migrations
                     b.Property<string>("UpdatedBy")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("UserId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
+
+                    b.HasIndex("CustomerId");
 
                     b.HasIndex("StaffId");
 
-                    b.HasIndex("UserId");
-
                     b.ToTable("Appointments");
+                });
+
+            modelBuilder.Entity("OnlinePharmacy.Shared.Domain.Customer", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Address")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("DateCreated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("DateOfBirth")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("DateUpdated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Email")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Gender")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Password")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PhoneNo")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UpdatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Username")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Users");
                 });
 
             modelBuilder.Entity("OnlinePharmacy.Shared.Domain.Order", b =>
@@ -472,6 +521,9 @@ namespace OnlinePharmacy.Server.Data.Migrations
 
                     b.Property<string>("CreatedBy")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("CustomerId")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("DateCreated")
                         .HasColumnType("datetime2");
@@ -491,14 +543,11 @@ namespace OnlinePharmacy.Server.Data.Migrations
                     b.Property<string>("UpdatedBy")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("UserId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
-                    b.HasIndex("StaffId");
+                    b.HasIndex("CustomerId");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("StaffId");
 
                     b.ToTable("Orders");
                 });
@@ -552,6 +601,9 @@ namespace OnlinePharmacy.Server.Data.Migrations
                     b.Property<string>("CreatedBy")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("CustomerId")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("DateCreated")
                         .HasColumnType("datetime2");
 
@@ -576,14 +628,11 @@ namespace OnlinePharmacy.Server.Data.Migrations
                     b.Property<string>("UpdatedBy")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("UserId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
-                    b.HasIndex("StaffId");
+                    b.HasIndex("CustomerId");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("StaffId");
 
                     b.ToTable("Prescriptions");
                 });
@@ -671,8 +720,8 @@ namespace OnlinePharmacy.Server.Data.Migrations
                             Id = 1,
                             Category = "Cleansers",
                             CreatedBy = "System",
-                            DateCreated = new DateTime(2024, 1, 25, 15, 59, 18, 273, DateTimeKind.Local).AddTicks(1184),
-                            DateUpdated = new DateTime(2024, 1, 25, 15, 59, 18, 273, DateTimeKind.Local).AddTicks(1194),
+                            DateCreated = new DateTime(2024, 1, 25, 16, 31, 15, 868, DateTimeKind.Local).AddTicks(8993),
+                            DateUpdated = new DateTime(2024, 1, 25, 16, 31, 15, 868, DateTimeKind.Local).AddTicks(9008),
                             Description = "Description",
                             Name = "CeraVe Cleanser",
                             Price = 20.0,
@@ -684,8 +733,8 @@ namespace OnlinePharmacy.Server.Data.Migrations
                             Id = 2,
                             Category = "Moisturizers",
                             CreatedBy = "System",
-                            DateCreated = new DateTime(2024, 1, 25, 15, 59, 18, 273, DateTimeKind.Local).AddTicks(1197),
-                            DateUpdated = new DateTime(2024, 1, 25, 15, 59, 18, 273, DateTimeKind.Local).AddTicks(1197),
+                            DateCreated = new DateTime(2024, 1, 25, 16, 31, 15, 868, DateTimeKind.Local).AddTicks(9011),
+                            DateUpdated = new DateTime(2024, 1, 25, 16, 31, 15, 868, DateTimeKind.Local).AddTicks(9012),
                             Description = "Description",
                             Name = "Cetaphil Moisturizer",
                             Price = 20.0,
@@ -738,52 +787,6 @@ namespace OnlinePharmacy.Server.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Staffs");
-                });
-
-            modelBuilder.Entity("OnlinePharmacy.Shared.Domain.User", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Address")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("CreatedBy")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("DateCreated")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("DateOfBirth")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("DateUpdated")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Email")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Gender")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Password")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PhoneNo")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("UpdatedBy")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Username")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Users");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -839,34 +842,34 @@ namespace OnlinePharmacy.Server.Data.Migrations
 
             modelBuilder.Entity("OnlinePharmacy.Shared.Domain.Appointment", b =>
                 {
+                    b.HasOne("OnlinePharmacy.Shared.Domain.Customer", "Customer")
+                        .WithMany("Appointments")
+                        .HasForeignKey("CustomerId");
+
                     b.HasOne("OnlinePharmacy.Shared.Domain.Staff", "Staff")
                         .WithMany()
                         .HasForeignKey("StaffId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("OnlinePharmacy.Shared.Domain.User", "User")
-                        .WithMany("Appointments")
-                        .HasForeignKey("UserId");
+                    b.Navigation("Customer");
 
                     b.Navigation("Staff");
-
-                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("OnlinePharmacy.Shared.Domain.Order", b =>
                 {
+                    b.HasOne("OnlinePharmacy.Shared.Domain.Customer", "Customer")
+                        .WithMany()
+                        .HasForeignKey("CustomerId");
+
                     b.HasOne("OnlinePharmacy.Shared.Domain.Staff", "Staff")
                         .WithMany()
                         .HasForeignKey("StaffId");
 
-                    b.HasOne("OnlinePharmacy.Shared.Domain.User", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId");
+                    b.Navigation("Customer");
 
                     b.Navigation("Staff");
-
-                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("OnlinePharmacy.Shared.Domain.OrderItem", b =>
@@ -890,19 +893,19 @@ namespace OnlinePharmacy.Server.Data.Migrations
 
             modelBuilder.Entity("OnlinePharmacy.Shared.Domain.Prescription", b =>
                 {
+                    b.HasOne("OnlinePharmacy.Shared.Domain.Customer", "Customer")
+                        .WithMany()
+                        .HasForeignKey("CustomerId");
+
                     b.HasOne("OnlinePharmacy.Shared.Domain.Staff", "Staff")
                         .WithMany()
                         .HasForeignKey("StaffId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("OnlinePharmacy.Shared.Domain.User", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId");
+                    b.Navigation("Customer");
 
                     b.Navigation("Staff");
-
-                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("OnlinePharmacy.Shared.Domain.PrescriptionItem", b =>
@@ -924,7 +927,7 @@ namespace OnlinePharmacy.Server.Data.Migrations
                     b.Navigation("Product");
                 });
 
-            modelBuilder.Entity("OnlinePharmacy.Shared.Domain.User", b =>
+            modelBuilder.Entity("OnlinePharmacy.Shared.Domain.Customer", b =>
                 {
                     b.Navigation("Appointments");
                 });
