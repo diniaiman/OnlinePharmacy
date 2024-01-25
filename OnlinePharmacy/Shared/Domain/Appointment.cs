@@ -8,17 +8,15 @@ using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace OnlinePharmacy.Shared.Domain
 {
-    public class Appointment : BaseDomainModel
+    public class Appointment : BaseDomainModel, IValidatableObject
     {
         [Required]
         [DataType(DataType.Date)]
         public DateTime DateOut { get; set; }
         public DateTime? DateIn { get; set; }
-        public string? Appointment_Date { get; set; }
-        public string? Appointment_Time { get; set; }
-        public string? Appointment_Status { get; set; }
-        public virtual Customer? Customer { get; set; }
+        [Required]
         public int? CustomerId { get; set; }
+        public virtual Customer? Customer { get; set; }
         public virtual Staff? Staff { get; set; }
         public int StaffId { get; set; }
 

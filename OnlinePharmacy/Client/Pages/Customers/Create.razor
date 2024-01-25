@@ -2,16 +2,15 @@
 @inject HttpClient _client
 @inject NavigationManager _navManager
 
-<h3 class="card-title">Create New Customer</h3>
+<h3 class="card-title">Create New User</h3>
 <hr />
 <br />
 
-<FormComponent ButtonText="Create Customer" OnValidSubmit="CreateCustomer" customer="customer" />
-
+<FormComponent ButtonText="Create User" OnValidSubmit="CreateUser" customer="customer" />
 @code { 
     Customer customer = new Customer();
 
-    private async Task CreateCustomer()
+    private async Task CreateUser()
     {
         await _client.PostAsJsonAsync(Endpoints.CustomersEndpoint, customer);
         _navManager.NavigateTo("/customers/");

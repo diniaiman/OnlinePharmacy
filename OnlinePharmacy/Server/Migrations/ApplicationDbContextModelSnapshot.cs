@@ -396,7 +396,7 @@ namespace OnlinePharmacy.Server.Migrations
                         {
                             Id = "3781efa7-66dc-47f0-860f-e506d04102e4",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "d1de9b02-1e2a-46d0-bf01-f3d991e538e2",
+                            ConcurrencyStamp = "fe9e1100-5335-4c59-b090-bdcd3eb6a556",
                             Email = "admin@localhost.com",
                             EmailConfirmed = false,
                             FirstName = "Admin",
@@ -404,9 +404,9 @@ namespace OnlinePharmacy.Server.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@LOCALHOST.COM",
                             NormalizedUserName = "ADMIN@LOCALHOST.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAENBuAxDxp2UqbpzvvG3Dsp0h1duWGNdk+RFHk53fItyel3DuFiJ+P4MNM78spSBLqQ==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEDNP0/UnvCVYLzlbIE/EoP7x7r4yz99gOiyWxklsqojZRfIhFWUTWdqWa77wTEzo7g==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "47e546f7-b0f3-41f2-aadc-631ac8ccef61",
+                            SecurityStamp = "1ed599aa-6176-4562-83ee-693b0785bd74",
                             TwoFactorEnabled = false,
                             UserName = "admin@localhost.com"
                         });
@@ -420,19 +420,11 @@ namespace OnlinePharmacy.Server.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("Appointment_Date")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Appointment_Status")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Appointment_Time")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("CreatedBy")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("CustomerId")
+                        .IsRequired()
                         .HasColumnType("int");
 
                     b.Property<DateTime>("DateCreated")
@@ -505,7 +497,7 @@ namespace OnlinePharmacy.Server.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Users");
+                    b.ToTable("Customers");
                 });
 
             modelBuilder.Entity("OnlinePharmacy.Shared.Domain.Order", b =>
@@ -717,8 +709,8 @@ namespace OnlinePharmacy.Server.Migrations
                             Id = 1,
                             Category = "Cleansers",
                             CreatedBy = "System",
-                            DateCreated = new DateTime(2024, 1, 25, 17, 36, 40, 256, DateTimeKind.Local).AddTicks(3630),
-                            DateUpdated = new DateTime(2024, 1, 25, 17, 36, 40, 256, DateTimeKind.Local).AddTicks(3639),
+                            DateCreated = new DateTime(2024, 1, 25, 18, 42, 50, 263, DateTimeKind.Local).AddTicks(8158),
+                            DateUpdated = new DateTime(2024, 1, 25, 18, 42, 50, 263, DateTimeKind.Local).AddTicks(8168),
                             Description = "Description",
                             Name = "CeraVe Cleanser",
                             Price = 20.0,
@@ -730,8 +722,8 @@ namespace OnlinePharmacy.Server.Migrations
                             Id = 2,
                             Category = "Moisturizers",
                             CreatedBy = "System",
-                            DateCreated = new DateTime(2024, 1, 25, 17, 36, 40, 256, DateTimeKind.Local).AddTicks(3645),
-                            DateUpdated = new DateTime(2024, 1, 25, 17, 36, 40, 256, DateTimeKind.Local).AddTicks(3646),
+                            DateCreated = new DateTime(2024, 1, 25, 18, 42, 50, 263, DateTimeKind.Local).AddTicks(8170),
+                            DateUpdated = new DateTime(2024, 1, 25, 18, 42, 50, 263, DateTimeKind.Local).AddTicks(8171),
                             Description = "Description",
                             Name = "Cetaphil Moisturizer",
                             Price = 20.0,
@@ -840,8 +832,10 @@ namespace OnlinePharmacy.Server.Migrations
             modelBuilder.Entity("OnlinePharmacy.Shared.Domain.Appointment", b =>
                 {
                     b.HasOne("OnlinePharmacy.Shared.Domain.Customer", "Customer")
-                        .WithMany("Appointments")
-                        .HasForeignKey("CustomerId");
+                        .WithMany()
+                        .HasForeignKey("CustomerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("OnlinePharmacy.Shared.Domain.Staff", "Staff")
                         .WithMany()
@@ -922,11 +916,6 @@ namespace OnlinePharmacy.Server.Migrations
                     b.Navigation("Prescription");
 
                     b.Navigation("Product");
-                });
-
-            modelBuilder.Entity("OnlinePharmacy.Shared.Domain.Customer", b =>
-                {
-                    b.Navigation("Appointments");
                 });
 #pragma warning restore 612, 618
         }

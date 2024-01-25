@@ -55,6 +55,29 @@ namespace OnlinePharmacy.Server.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Customers",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Username = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Password = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Email = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Address = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    PhoneNo = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Gender = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    DateOfBirth = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    DateCreated = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    DateUpdated = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    UpdatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Customers", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "DeviceCodes",
                 columns: table => new
                 {
@@ -153,29 +176,6 @@ namespace OnlinePharmacy.Server.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Staffs", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Users",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Username = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Password = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Email = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Address = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    PhoneNo = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Gender = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    DateOfBirth = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    DateCreated = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    DateUpdated = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    UpdatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Users", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -292,10 +292,7 @@ namespace OnlinePharmacy.Server.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     DateOut = table.Column<DateTime>(type: "datetime2", nullable: false),
                     DateIn = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    Appointment_Date = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Appointment_Time = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Appointment_Status = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    CustomerId = table.Column<int>(type: "int", nullable: true),
+                    CustomerId = table.Column<int>(type: "int", nullable: false),
                     StaffId = table.Column<int>(type: "int", nullable: false),
                     DateCreated = table.Column<DateTime>(type: "datetime2", nullable: false),
                     DateUpdated = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -306,16 +303,17 @@ namespace OnlinePharmacy.Server.Migrations
                 {
                     table.PrimaryKey("PK_Appointments", x => x.Id);
                     table.ForeignKey(
+                        name: "FK_Appointments_Customers_CustomerId",
+                        column: x => x.CustomerId,
+                        principalTable: "Customers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
                         name: "FK_Appointments_Staffs_StaffId",
                         column: x => x.StaffId,
                         principalTable: "Staffs",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Appointments_Users_CustomerId",
-                        column: x => x.CustomerId,
-                        principalTable: "Users",
-                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -337,14 +335,14 @@ namespace OnlinePharmacy.Server.Migrations
                 {
                     table.PrimaryKey("PK_Orders", x => x.Id);
                     table.ForeignKey(
+                        name: "FK_Orders_Customers_CustomerId",
+                        column: x => x.CustomerId,
+                        principalTable: "Customers",
+                        principalColumn: "Id");
+                    table.ForeignKey(
                         name: "FK_Orders_Staffs_StaffId",
                         column: x => x.StaffId,
                         principalTable: "Staffs",
-                        principalColumn: "Id");
-                    table.ForeignKey(
-                        name: "FK_Orders_Users_CustomerId",
-                        column: x => x.CustomerId,
-                        principalTable: "Users",
                         principalColumn: "Id");
                 });
 
@@ -369,16 +367,16 @@ namespace OnlinePharmacy.Server.Migrations
                 {
                     table.PrimaryKey("PK_Prescriptions", x => x.Id);
                     table.ForeignKey(
+                        name: "FK_Prescriptions_Customers_CustomerId",
+                        column: x => x.CustomerId,
+                        principalTable: "Customers",
+                        principalColumn: "Id");
+                    table.ForeignKey(
                         name: "FK_Prescriptions_Staffs_StaffId",
                         column: x => x.StaffId,
                         principalTable: "Staffs",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Prescriptions_Users_CustomerId",
-                        column: x => x.CustomerId,
-                        principalTable: "Users",
-                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -455,15 +453,15 @@ namespace OnlinePharmacy.Server.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "FirstName", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "3781efa7-66dc-47f0-860f-e506d04102e4", 0, "d1de9b02-1e2a-46d0-bf01-f3d991e538e2", "admin@localhost.com", false, "Admin", "User", false, null, "ADMIN@LOCALHOST.COM", "ADMIN@LOCALHOST.COM", "AQAAAAIAAYagAAAAENBuAxDxp2UqbpzvvG3Dsp0h1duWGNdk+RFHk53fItyel3DuFiJ+P4MNM78spSBLqQ==", null, false, "47e546f7-b0f3-41f2-aadc-631ac8ccef61", false, "admin@localhost.com" });
+                values: new object[] { "3781efa7-66dc-47f0-860f-e506d04102e4", 0, "fe9e1100-5335-4c59-b090-bdcd3eb6a556", "admin@localhost.com", false, "Admin", "User", false, null, "ADMIN@LOCALHOST.COM", "ADMIN@LOCALHOST.COM", "AQAAAAIAAYagAAAAEDNP0/UnvCVYLzlbIE/EoP7x7r4yz99gOiyWxklsqojZRfIhFWUTWdqWa77wTEzo7g==", null, false, "1ed599aa-6176-4562-83ee-693b0785bd74", false, "admin@localhost.com" });
 
             migrationBuilder.InsertData(
                 table: "Products",
                 columns: new[] { "Id", "Category", "CreatedBy", "DateCreated", "DateUpdated", "Description", "Name", "Price", "Quantity", "UpdatedBy" },
                 values: new object[,]
                 {
-                    { 1, "Cleansers", "System", new DateTime(2024, 1, 25, 17, 36, 40, 256, DateTimeKind.Local).AddTicks(3630), new DateTime(2024, 1, 25, 17, 36, 40, 256, DateTimeKind.Local).AddTicks(3639), "Description", "CeraVe Cleanser", 20.0, 9, "System" },
-                    { 2, "Moisturizers", "System", new DateTime(2024, 1, 25, 17, 36, 40, 256, DateTimeKind.Local).AddTicks(3645), new DateTime(2024, 1, 25, 17, 36, 40, 256, DateTimeKind.Local).AddTicks(3646), "Description", "Cetaphil Moisturizer", 20.0, 8, "System" }
+                    { 1, "Cleansers", "System", new DateTime(2024, 1, 25, 18, 42, 50, 263, DateTimeKind.Local).AddTicks(8158), new DateTime(2024, 1, 25, 18, 42, 50, 263, DateTimeKind.Local).AddTicks(8168), "Description", "CeraVe Cleanser", 20.0, 9, "System" },
+                    { 2, "Moisturizers", "System", new DateTime(2024, 1, 25, 18, 42, 50, 263, DateTimeKind.Local).AddTicks(8170), new DateTime(2024, 1, 25, 18, 42, 50, 263, DateTimeKind.Local).AddTicks(8171), "Description", "Cetaphil Moisturizer", 20.0, 8, "System" }
                 });
 
             migrationBuilder.InsertData(
@@ -649,10 +647,10 @@ namespace OnlinePharmacy.Server.Migrations
                 name: "Products");
 
             migrationBuilder.DropTable(
-                name: "Staffs");
+                name: "Customers");
 
             migrationBuilder.DropTable(
-                name: "Users");
+                name: "Staffs");
         }
     }
 }

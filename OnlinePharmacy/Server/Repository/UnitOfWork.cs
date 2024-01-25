@@ -22,7 +22,8 @@ namespace OnlinePharmacy.Server.Repository
         private IGenericRepository<Order> _orders;
         private IGenericRepository<Prescription> _prescriptions;
         private IGenericRepository<Staff> _staffs;
-        private IGenericRepository<Customer> _users;
+        private IGenericRepository<Customer> _customers;
+
 
         private UserManager<ApplicationUser> _userManager;
 
@@ -42,8 +43,8 @@ namespace OnlinePharmacy.Server.Repository
             => _prescriptions ??= new GenericRepository<Prescription>(_context);
         public IGenericRepository<Staff> Staffs
             => _staffs ??= new GenericRepository<Staff>(_context);
-        public IGenericRepository<Customer> Users
-            => _users ??= new GenericRepository<Customer>(_context);
+        public IGenericRepository<Customer> Customers
+            => _customers ??= new GenericRepository<Customer>(_context);
 
         public void Dispose()
         {

@@ -65,6 +65,7 @@ else
 @code {
     private List<Customer>? Customers;
 
+
     protected async override Task OnInitializedAsync()
     {
         Customers = await _client.GetFromJsonAsync<List<Customer>>($"{Endpoints.CustomersEndpoint}");

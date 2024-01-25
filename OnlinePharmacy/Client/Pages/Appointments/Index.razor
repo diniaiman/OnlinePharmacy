@@ -22,9 +22,10 @@ else
     <table class="table table-responsive">
         <thead>
             <tr>
+                <th>Appointment Id</th>
+                <th>Customer Username</th>
                 <th>Appointment Date</th>
-                <th>Appointment Time</th>
-                <th>Appointment Status</th>
+                <th>Duration in days</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -32,9 +33,10 @@ else
             @foreach (var appointment in Appointments)
             {
                 <tr>
-                    <td>@appointment.Appointment_Date</td>
-                    <td>@appointment.Appointment_Time</td>
-                    <td>@appointment.Appointment_Status</td>
+                    <td>@appointment.Id</td>
+                    <td>@appointment.Customer.Username</td>
+                    <td>@appointment.DateCreated.Date.ToString("dd MMMM yyyy")</td>
+                    <td>@(appointment.DateIn != null ? (appointment.DateIn.Value - appointment.DateOut).TotalDays.ToString() : "To Be Determined")</td>
                     <td>
                         <a href="/appointments/view/@appointment.Id" class="btn btn-primary">
                             <span class="oi oi-book"></span>
@@ -55,6 +57,8 @@ else
 @code {
     private List<Appointment>? Appointments;
 
+    private DateTime nullDT = new DateTime(1, 1, 1, 0, 0, 0);
+
     protected async override Task OnInitializedAsync()
     {
         Appointments = await _client.GetFromJsonAsync<List<Appointment>>($"{Endpoints.AppointmentsEndpoint}");
@@ -65,7 +69,7 @@ else
         if (Appointments != null)
         {
             var appointment = Appointments.First(q => q.Id == appointmentId);
-            var confirm = await js.InvokeAsync<bool>("confirm", $"Do you want to delete {appointment.Appointment_Date}?");
+            var confirm = await js.InvokeAsync<bool>("confirm", $"Do you want to delete {appointment.Id}?");
             if (confirm)
             {
                 await _client.DeleteAsync($"{Endpoints.AppointmentsEndpoint}/{appointmentId}");
