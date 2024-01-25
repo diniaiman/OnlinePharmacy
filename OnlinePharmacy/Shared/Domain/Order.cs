@@ -10,7 +10,7 @@ namespace OnlinePharmacy.Shared.Domain
     {
         public string? Order_Date { get; set; }
         public string? Order_Status { get; set; }
-        public virtual User? User { get; set; }
+        public virtual Customer? Customer { get; set; }
         public virtual Staff? Staff { get; set; }
      
     }

@@ -11,11 +11,11 @@
 @code {
     Appointment appointment = new Appointment();
 
-    private IList<User>? Users;
+    private IList<Customer>? Customers;
 
     protected async override Task OnInitializedAsync()
     {
-        Users = await _client.GetFromJsonAsync<List<User>>($"{Endpoints.UsersEndpoint}");
+        Customers = await _client.GetFromJsonAsync<List<Customer>>($"{Endpoints.CustomersEndpoint}");
     }
 
     private async Task CreateAppointment()

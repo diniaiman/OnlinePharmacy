@@ -1,22 +1,22 @@
-﻿@page "/users/"
+﻿@page "/customers/"
 @inject HttpClient _client
 @inject IJSRuntime js
 @attribute [Authorize]
 
 
-<h3 class="card=title">Skincare Users</h3>
+<h3 class="card=title">Skincare Customers</h3>
 <br />
 
-<a href="/users/create" class="btn btn-secondary">
+<a href="/customers/create" class="btn btn-secondary">
     <span class="oi oi-plus"></span>
-    Create New User
+    Create New Customer
 </a>
 <br />
 <br />
 
-@if (Users == null)
+@if (Customers == null)
 {
-    <div class="alert alert-info">Loading Users . . .</div>
+    <div class="alert alert-info">Loading Customers . . .</div>
 }
 else
 {
@@ -34,24 +34,24 @@ else
             </tr>
         </thead>
         <tbody>
-            @foreach (var user in Users)
+            @foreach (var customer in Customers)
             {
                 <tr>
-                    <td>@user.Username</td>
-                    <td>@user.Password</td>
-                    <td>@user.PhoneNo</td>
-                    <td>@user.Gender</td>
-                    <td>@user.Email</td>
-                    <td>@user.DateOfBirth</td>
-                    <td>@user.Address</td>
+                    <td>@customer.Username</td>
+                    <td>@customer.Password</td>
+                    <td>@customer.PhoneNo</td>
+                    <td>@customer.Gender</td>
+                    <td>@customer.Email</td>
+                    <td>@customer.DateOfBirth</td>
+                    <td>@customer.Address</td>
                     <td>
-                        <a href="/user/view/@user.Id" class="btn btn-primary">
+                        <a href="/customer/view/@customer.Id" class="btn btn-primary">
                             <span class="oi oi-book"></span>
                         </a>
-                        <a href="/user/edit/@user.Id" class="btn btn-warning">
+                        <a href="/customer/edit/@customer.Id" class="btn btn-warning">
                             <span class="oi oi-pencil"></span>
                         </a>
-                        <button class="btn btn-danger" @onclick="@(()=>Delete(user.Id))">
+                        <button class="btn btn-danger" @onclick="@(()=>Delete(customer.Id))">
                             <span class="oi oi-delete"></span>
                         </button>
                     </td>
@@ -63,22 +63,22 @@ else
 
 
 @code {
-    private List<User>? Users;
+    private List<Customer>? Customers;
 
     protected async override Task OnInitializedAsync()
     {
-        Users = await _client.GetFromJsonAsync<List<User>>($"{Endpoints.UsersEndpoint}");
+        Customers = await _client.GetFromJsonAsync<List<Customer>>($"{Endpoints.CustomersEndpoint}");
     }
 
-    async Task Delete(int userId)
+    async Task Delete(int customerId)
     {
-        if (Users != null)
+        if (Customers != null)
         {
-            var user = Users.First(q => q.Id == userId);
-            var confirm = await js.InvokeAsync<bool>("confirm", $"Do you want to delete {user.Username}?");
+            var customer = Customers.First(q => q.Id == customerId);
+            var confirm = await js.InvokeAsync<bool>("confirm", $"Do you want to delete {customer.Username}?");
             if (confirm)
             {
-                await _client.DeleteAsync($"{Endpoints.UsersEndpoint}/{userId}");
+                await _client.DeleteAsync($"{Endpoints.CustomersEndpoint}/{customerId}");
                 await OnInitializedAsync();
             }
         }
