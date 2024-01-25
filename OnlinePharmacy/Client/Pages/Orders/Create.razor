@@ -12,6 +12,23 @@
     <ValidationSummary />
 
     <div class="form-group">
+        <label>Customer: </label>
+        <div>
+            <InputSelect @bind-Value="order.CustomerId" class="form-control">
+                <option value=" "> -- Select Customer -- </option>
+                @if (Customers != null)
+                {
+                    foreach (var customer in Customers)
+                    {
+                        <option value="@customer.Id">@customer.Username</option>
+                    }
+                }
+            </InputSelect>
+            <ValidationMessage For ="@(() => order.CustomerId)" />
+        </div>
+    </div>
+
+    <div class="form-group">
         <label>Order Date: </label>
         <div>
             <InputText @bind-Value="@order.Order_Date" class="form-control" />
@@ -32,7 +49,12 @@
 @code {
     Order order = new Order();
 
+    private IList<Customer>? Customers;
 
+    protected async override Task OnInitializedAsync()
+    {
+        Customers = await _client.GetFromJsonAsync<List<Customer>>($"{Endpoints.CustomersEndpoint}");
+    }
     private async Task CreateOrder()
     {
         await _client.PostAsJsonAsync(Endpoints.OrdersEndpoint, order);

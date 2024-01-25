@@ -23,8 +23,8 @@ else
     <table class="table table-responsive">
         <thead>
             <tr>
+                <th>Customer Name</th>
                 <th>Order Date</th>
-                <th>Order Status</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -32,6 +32,7 @@ else
             @foreach (var order in Orders)
             {
                 <tr>
+                    <td>@order.Customer.Username</td>
                     <td>@order.Order_Date</td>
                     <td>@order.Order_Status</td>
                     <td>
