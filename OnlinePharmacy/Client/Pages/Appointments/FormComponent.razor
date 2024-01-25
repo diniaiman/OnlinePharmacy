@@ -6,19 +6,19 @@
 
     <fieldset disabled="@Disabled">
         <div class="form-group">
-            <label>User: </label>
+            <label>Customer: </label>
             <div>
-                <InputSelect @bind-Value="appointment.UserId" class="form-control">
-                    <option value="">-- Select User --</option>
-                    @if (Users != null)
+                <InputSelect @bind-Value="appointment.CustomerId" class="form-control">
+                    <option value="">-- Select Customer --</option>
+                    @if (Customers != null)
                     {
-                        foreach (var user in Users)
+                        foreach (var customer in Customers)
                         {
-                            <option value="@user.Id">@user.Username </option>
+                            <option value="@customer.Id">@customer.Username </option>
                         }
                     }
                 </InputSelect>
-                <ValidationMessage For="@(() => appointment.UserId)" />
+                <ValidationMessage For="@(() => appointment.CustomerId)" />
             </div>
         </div>
 
@@ -60,10 +60,10 @@
     [Parameter] public string ButtonText { get; set; } = "Save";
     [Parameter] public EventCallback OnValidSubmit { get; set; }
 
-    private IList<User>? Users;
+    private IList<Customer>? Customers;
 
     protected async override Task OnInitializedAsync()
     {
-        Users = await _client.GetFromJsonAsync<List<User>>($"{Endpoints.UsersEndpoint}");
+        Customers = await _client.GetFromJsonAsync<List<Customer>>($"{Endpoints.CustomersEndpoint}");
     }
 }

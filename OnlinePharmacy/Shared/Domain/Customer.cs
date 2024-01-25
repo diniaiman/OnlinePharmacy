@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace OnlinePharmacy.Shared.Domain
 {
-    public class User : BaseDomainModel
+    public class Customer : BaseDomainModel
     {
         public string? Username { get; set; }
         public string? Password { get; set; }

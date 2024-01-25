@@ -15,8 +15,8 @@ namespace OnlinePharmacy.Shared.Domain
         public DateTime? DateIn { get; set; }
         public string? Prescription_Date { get; set; }
         public string? Prescription_Details { get; set; }
-        public virtual User? User { get; set; }
-        public int? UserId { get; set; }
+        public virtual Customer? Customer { get; set; }
+        public int? CustomerId { get; set; }
         public virtual Staff? Staff { get; set; }
         public int StaffId { get; set; }
 
