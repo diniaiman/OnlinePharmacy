@@ -1,0 +1,29 @@
+﻿@page "/prescriptions/create/"
+@inject HttpClient _client
+@inject NavigationManager _navManager
+
+<h3 class="card-title">Create New Prescription</h3>
+<hr />
+<br />
+
+<FormComponent ButtonText="Create Prescription" OnValidSubmit="CreatePrescription" prescription="prescription" />
+
+@code {
+    Prescription prescription = new Prescription();
+
+    private IList<Product>? Products;
+    private IList<User>? Users;
+
+    protected async override Task OnInitializedAsync()
+    {
+        Products = await _client.GetFromJsonAsync<List<Product>>($"{Endpoints.ProductsEndpoint}");
+        Users = await _client.GetFromJsonAsync<List<User>>($"{Endpoints.UsersEndpoint}");
+    }
+
+    private async Task CreatePrescription()
+    {
+        await _client.PostAsJsonAsync(Endpoints.PrescriptionsEndpoint, prescription);
+        _navManager.NavigateTo("/prescriptions/");
+    }
+
+}
