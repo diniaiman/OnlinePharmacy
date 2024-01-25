@@ -1,0 +1,68 @@
+﻿@page "/products/create/"
+@inject HttpClient _client
+@inject NavigationManager _navManager
+
+
+<h3 class="card-title">Create New Product</h3>
+<hr />
+<br />
+
+<EditForm Model="@product" OnValidSubmit="CreateProduct">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <div class="form-group">
+        <label>Name: </label>
+        <div>
+            <InputText @bind-Value="@product.Name" class="form-control" />
+            <ValidationMessage For="@(() => product.Name)" />
+        </div>
+    </div>
+    <div class="form-group">
+        <label>Price: </label>
+        <div>
+            <InputNumber @bind-Value="@product.Price" class="form-control" />
+            <ValidationMessage For="@(() => product.Price)" />
+        </div>
+    </div>
+    <div class="form-group">
+        <label>Description: </label>
+        <div>
+            <InputText @bind-Value="@product.Description" class="form-control" />
+            <ValidationMessage For="@(() => product.Description)" />
+        </div>
+    </div>
+    <div class="form-group">
+        <label>Quantity: </label>
+        <div>
+            <InputNumber @bind-Value="@product.Quantity" class="form-control" />
+            <ValidationMessage For="@(() => product.Quantity)" />
+        </div>
+    </div>
+    <div class="form-group">
+        <label>Category: </label>
+        <div>
+            <InputText @bind-Value="@product.Category" class="form-control" />
+            <ValidationMessage For="@(() => product.Category)" />
+        </div>
+    </div>
+
+    <br />
+    <br />
+
+    <button type="submit" class="btn btn-success btn-block">
+        Create Order
+    </button>
+
+</EditForm>
+
+@code {
+    Product product = new Product();
+
+
+    private async Task CreateProduct()
+    {
+        await _client.PostAsJsonAsync(Endpoints.ProductsEndpoint, product);
+        _navManager.NavigateTo("/products/");
+    }
+}

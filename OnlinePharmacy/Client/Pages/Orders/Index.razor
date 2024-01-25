@@ -3,7 +3,8 @@
 @inject IJSRuntime js
 @attribute [Authorize]
 
-<h3 class="card-title">Skincare Orders</h3>
+
+<h3 class="card=title">Skincare Orders</h3>
 <br />
 
 <a href="/orders/create" class="btn btn-secondary">
@@ -15,7 +16,7 @@
 
 @if (Orders == null)
 {
-    <div class="alert alert-info">Loading Orders...</div>
+    <div class="alert alert-info">Loading Orders . . .</div>
 }
 else
 {
@@ -34,10 +35,10 @@ else
                     <td>@order.Order_Date</td>
                     <td>@order.Order_Status</td>
                     <td>
-                        <a href="/orders/view/@order.Id" class="btn btn-primary">
+                        <a href="/order/view/@order.Id" class="btn btn-primary">
                             <span class="oi oi-book"></span>
                         </a>
-                        <a href="/orders/edit/@order.Id" class="btn btn-warning">
+                        <a href="/order/edit/@order.Id" class="btn btn-warning">
                             <span class="oi oi-pencil"></span>
                         </a>
                         <button class="btn btn-danger" @onclick="@(()=>Delete(order.Id))">
@@ -49,6 +50,7 @@ else
         </tbody>
     </table>
 }
+
 
 @code {
     private List<Order>? Orders;
