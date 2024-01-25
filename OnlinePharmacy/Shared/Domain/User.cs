@@ -15,6 +15,7 @@ namespace OnlinePharmacy.Shared.Domain
         public string? PhoneNo { get; set; }
         public string? Gender { get; set; }
         public string? DateOfBirth { get; set; }
+        public virtual List<Appointment>? Appointments { get; set; }
 
     }
 }
