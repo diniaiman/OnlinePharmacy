@@ -293,7 +293,7 @@ namespace OnlinePharmacy.Server.Migrations
                     DateOut = table.Column<DateTime>(type: "datetime2", nullable: false),
                     DateIn = table.Column<DateTime>(type: "datetime2", nullable: true),
                     CustomerId = table.Column<int>(type: "int", nullable: false),
-                    StaffId = table.Column<int>(type: "int", nullable: false),
+                    StaffId = table.Column<int>(type: "int", nullable: true),
                     DateCreated = table.Column<DateTime>(type: "datetime2", nullable: false),
                     DateUpdated = table.Column<DateTime>(type: "datetime2", nullable: false),
                     CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -312,8 +312,7 @@ namespace OnlinePharmacy.Server.Migrations
                         name: "FK_Appointments_Staffs_StaffId",
                         column: x => x.StaffId,
                         principalTable: "Staffs",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -324,7 +323,7 @@ namespace OnlinePharmacy.Server.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Order_Date = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Order_Status = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    CustomerId = table.Column<int>(type: "int", nullable: true),
+                    CustomerId = table.Column<int>(type: "int", nullable: false),
                     StaffId = table.Column<int>(type: "int", nullable: true),
                     DateCreated = table.Column<DateTime>(type: "datetime2", nullable: false),
                     DateUpdated = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -338,7 +337,8 @@ namespace OnlinePharmacy.Server.Migrations
                         name: "FK_Orders_Customers_CustomerId",
                         column: x => x.CustomerId,
                         principalTable: "Customers",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Orders_Staffs_StaffId",
                         column: x => x.StaffId,
@@ -354,10 +354,9 @@ namespace OnlinePharmacy.Server.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     DateOut = table.Column<DateTime>(type: "datetime2", nullable: false),
                     DateIn = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    Prescription_Date = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Prescription_Details = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    CustomerId = table.Column<int>(type: "int", nullable: true),
-                    StaffId = table.Column<int>(type: "int", nullable: false),
+                    CustomerId = table.Column<int>(type: "int", nullable: false),
+                    StaffId = table.Column<int>(type: "int", nullable: true),
                     DateCreated = table.Column<DateTime>(type: "datetime2", nullable: false),
                     DateUpdated = table.Column<DateTime>(type: "datetime2", nullable: false),
                     CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -370,13 +369,13 @@ namespace OnlinePharmacy.Server.Migrations
                         name: "FK_Prescriptions_Customers_CustomerId",
                         column: x => x.CustomerId,
                         principalTable: "Customers",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Prescriptions_Staffs_StaffId",
                         column: x => x.StaffId,
                         principalTable: "Staffs",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -453,15 +452,15 @@ namespace OnlinePharmacy.Server.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "FirstName", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "3781efa7-66dc-47f0-860f-e506d04102e4", 0, "fe9e1100-5335-4c59-b090-bdcd3eb6a556", "admin@localhost.com", false, "Admin", "User", false, null, "ADMIN@LOCALHOST.COM", "ADMIN@LOCALHOST.COM", "AQAAAAIAAYagAAAAEDNP0/UnvCVYLzlbIE/EoP7x7r4yz99gOiyWxklsqojZRfIhFWUTWdqWa77wTEzo7g==", null, false, "1ed599aa-6176-4562-83ee-693b0785bd74", false, "admin@localhost.com" });
+                values: new object[] { "3781efa7-66dc-47f0-860f-e506d04102e4", 0, "5aab9574-84d6-4a47-9005-8a6fce10d649", "admin@localhost.com", false, "Admin", "User", false, null, "ADMIN@LOCALHOST.COM", "ADMIN@LOCALHOST.COM", "AQAAAAIAAYagAAAAEF4lxHtlmXMTq0lYTnQ9om09MhDDvfhPePyUD6tpZWoFXhx02rFg/5foAAnojgQLtw==", null, false, "f22b6767-0bde-49d5-b801-d5ac230531f2", false, "admin@localhost.com" });
 
             migrationBuilder.InsertData(
                 table: "Products",
                 columns: new[] { "Id", "Category", "CreatedBy", "DateCreated", "DateUpdated", "Description", "Name", "Price", "Quantity", "UpdatedBy" },
                 values: new object[,]
                 {
-                    { 1, "Cleansers", "System", new DateTime(2024, 1, 25, 18, 42, 50, 263, DateTimeKind.Local).AddTicks(8158), new DateTime(2024, 1, 25, 18, 42, 50, 263, DateTimeKind.Local).AddTicks(8168), "Description", "CeraVe Cleanser", 20.0, 9, "System" },
-                    { 2, "Moisturizers", "System", new DateTime(2024, 1, 25, 18, 42, 50, 263, DateTimeKind.Local).AddTicks(8170), new DateTime(2024, 1, 25, 18, 42, 50, 263, DateTimeKind.Local).AddTicks(8171), "Description", "Cetaphil Moisturizer", 20.0, 8, "System" }
+                    { 1, "Cleansers", "System", new DateTime(2024, 1, 26, 1, 38, 23, 675, DateTimeKind.Local).AddTicks(622), new DateTime(2024, 1, 26, 1, 38, 23, 675, DateTimeKind.Local).AddTicks(631), "Description", "CeraVe Cleanser", 20.0, 9, "System" },
+                    { 2, "Moisturizers", "System", new DateTime(2024, 1, 26, 1, 38, 23, 675, DateTimeKind.Local).AddTicks(634), new DateTime(2024, 1, 26, 1, 38, 23, 675, DateTimeKind.Local).AddTicks(635), "Description", "Cetaphil Moisturizer", 20.0, 8, "System" }
                 });
 
             migrationBuilder.InsertData(

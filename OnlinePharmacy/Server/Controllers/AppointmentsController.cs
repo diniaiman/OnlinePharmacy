@@ -99,10 +99,10 @@ namespace OnlinePharmacy.Server.Controllers
         [HttpPost]
         public async Task<ActionResult<Appointment>> PostAppointment(Appointment appointment)
         {
-            //if (_context.Appointments == null)
-            //{
-            //    return Problem("Entity set 'ApplicationDbContext.Appointments'  is null.");
-            //}
+            if (_unitOfWork.Appointments == null)
+            {
+                return Problem("Entity set 'ApplicationDbContext.Appointments'  is null.");
+            }
             //  _context.Appointments.Add(appointment);
             //  await _context.SaveChangesAsync();
             await _unitOfWork.Appointments.Insert(appointment);
@@ -115,10 +115,10 @@ namespace OnlinePharmacy.Server.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteAppointment(int id)
         {
-            //if (_context.Appointments == null)
-            //{
-            //    return NotFound();
-            //}
+            if (_unitOfWork.Appointments == null)
+            {
+                return NotFound();
+            }
             //var appointment = await _context.Appointments.FindAsync(id);
             var appointment = await _unitOfWork.Appointments.Get(q => q.Id == id);
             if (appointment == null)

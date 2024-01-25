@@ -22,6 +22,8 @@ else
     <table class="table table-responsive">
         <thead>
             <tr>
+                <th>Prescription Id</th>
+                <th>Customer Username</th>
                 <th>Prescription Date</th>
                 <th>Prescription Details</th>
                 <th>Actions</th>
@@ -31,7 +33,9 @@ else
             @foreach (var prescription in Prescriptions)
             {
                 <tr>
-                    <td>@prescription.Prescription_Date</td>
+                    <td>@prescription.Id</td>
+                    <td>@prescription.Customer.Username</td>
+                    <td>@prescription.DateCreated.Date.ToString("dd MMMM yyyy")</td>
                     <td>@prescription.Prescription_Details</td>
                     <td>
                         <a href="/prescriptions/view/@prescription.Id" class="btn btn-primary">
@@ -53,6 +57,8 @@ else
 @code {
     private List<Prescription>? Prescriptions;
 
+    private DateTime nullDT = new DateTime(1, 1, 1, 0, 0, 0);
+
     protected async override Task OnInitializedAsync()
     {
         Prescriptions = await _client.GetFromJsonAsync<List<Prescription>>($"{Endpoints.PrescriptionsEndpoint}");
@@ -63,7 +69,7 @@ else
         if (Prescriptions != null)
         {
             var prescription = Prescriptions.First(q => q.Id == prescriptionId);
-            var confirm = await js.InvokeAsync<bool>("confirm", $"Do you want to delete {prescription.Prescription_Date}?");
+            var confirm = await js.InvokeAsync<bool>("confirm", $"Do you want to delete {prescription.Id}?");
             if (confirm)
             {
                 await _client.DeleteAsync($"{Endpoints.PrescriptionsEndpoint}/{prescriptionId}");

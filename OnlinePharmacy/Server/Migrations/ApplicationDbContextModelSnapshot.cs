@@ -396,7 +396,7 @@ namespace OnlinePharmacy.Server.Migrations
                         {
                             Id = "3781efa7-66dc-47f0-860f-e506d04102e4",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "fe9e1100-5335-4c59-b090-bdcd3eb6a556",
+                            ConcurrencyStamp = "5aab9574-84d6-4a47-9005-8a6fce10d649",
                             Email = "admin@localhost.com",
                             EmailConfirmed = false,
                             FirstName = "Admin",
@@ -404,9 +404,9 @@ namespace OnlinePharmacy.Server.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@LOCALHOST.COM",
                             NormalizedUserName = "ADMIN@LOCALHOST.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEDNP0/UnvCVYLzlbIE/EoP7x7r4yz99gOiyWxklsqojZRfIhFWUTWdqWa77wTEzo7g==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEF4lxHtlmXMTq0lYTnQ9om09MhDDvfhPePyUD6tpZWoFXhx02rFg/5foAAnojgQLtw==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "1ed599aa-6176-4562-83ee-693b0785bd74",
+                            SecurityStamp = "f22b6767-0bde-49d5-b801-d5ac230531f2",
                             TwoFactorEnabled = false,
                             UserName = "admin@localhost.com"
                         });
@@ -439,7 +439,7 @@ namespace OnlinePharmacy.Server.Migrations
                     b.Property<DateTime>("DateUpdated")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("StaffId")
+                    b.Property<int?>("StaffId")
                         .HasColumnType("int");
 
                     b.Property<string>("UpdatedBy")
@@ -511,7 +511,7 @@ namespace OnlinePharmacy.Server.Migrations
                     b.Property<string>("CreatedBy")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("CustomerId")
+                    b.Property<int>("CustomerId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("DateCreated")
@@ -591,6 +591,7 @@ namespace OnlinePharmacy.Server.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("CustomerId")
+                        .IsRequired()
                         .HasColumnType("int");
 
                     b.Property<DateTime>("DateCreated")
@@ -605,13 +606,10 @@ namespace OnlinePharmacy.Server.Migrations
                     b.Property<DateTime>("DateUpdated")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("Prescription_Date")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Prescription_Details")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("StaffId")
+                    b.Property<int?>("StaffId")
                         .HasColumnType("int");
 
                     b.Property<string>("UpdatedBy")
@@ -709,8 +707,8 @@ namespace OnlinePharmacy.Server.Migrations
                             Id = 1,
                             Category = "Cleansers",
                             CreatedBy = "System",
-                            DateCreated = new DateTime(2024, 1, 25, 18, 42, 50, 263, DateTimeKind.Local).AddTicks(8158),
-                            DateUpdated = new DateTime(2024, 1, 25, 18, 42, 50, 263, DateTimeKind.Local).AddTicks(8168),
+                            DateCreated = new DateTime(2024, 1, 26, 1, 38, 23, 675, DateTimeKind.Local).AddTicks(622),
+                            DateUpdated = new DateTime(2024, 1, 26, 1, 38, 23, 675, DateTimeKind.Local).AddTicks(631),
                             Description = "Description",
                             Name = "CeraVe Cleanser",
                             Price = 20.0,
@@ -722,8 +720,8 @@ namespace OnlinePharmacy.Server.Migrations
                             Id = 2,
                             Category = "Moisturizers",
                             CreatedBy = "System",
-                            DateCreated = new DateTime(2024, 1, 25, 18, 42, 50, 263, DateTimeKind.Local).AddTicks(8170),
-                            DateUpdated = new DateTime(2024, 1, 25, 18, 42, 50, 263, DateTimeKind.Local).AddTicks(8171),
+                            DateCreated = new DateTime(2024, 1, 26, 1, 38, 23, 675, DateTimeKind.Local).AddTicks(634),
+                            DateUpdated = new DateTime(2024, 1, 26, 1, 38, 23, 675, DateTimeKind.Local).AddTicks(635),
                             Description = "Description",
                             Name = "Cetaphil Moisturizer",
                             Price = 20.0,
@@ -839,9 +837,7 @@ namespace OnlinePharmacy.Server.Migrations
 
                     b.HasOne("OnlinePharmacy.Shared.Domain.Staff", "Staff")
                         .WithMany()
-                        .HasForeignKey("StaffId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("StaffId");
 
                     b.Navigation("Customer");
 
@@ -852,7 +848,9 @@ namespace OnlinePharmacy.Server.Migrations
                 {
                     b.HasOne("OnlinePharmacy.Shared.Domain.Customer", "Customer")
                         .WithMany()
-                        .HasForeignKey("CustomerId");
+                        .HasForeignKey("CustomerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("OnlinePharmacy.Shared.Domain.Staff", "Staff")
                         .WithMany()
@@ -886,13 +884,13 @@ namespace OnlinePharmacy.Server.Migrations
                 {
                     b.HasOne("OnlinePharmacy.Shared.Domain.Customer", "Customer")
                         .WithMany()
-                        .HasForeignKey("CustomerId");
+                        .HasForeignKey("CustomerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("OnlinePharmacy.Shared.Domain.Staff", "Staff")
                         .WithMany()
-                        .HasForeignKey("StaffId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("StaffId");
 
                     b.Navigation("Customer");
 

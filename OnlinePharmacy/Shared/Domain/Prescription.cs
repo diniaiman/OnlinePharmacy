@@ -13,12 +13,12 @@ namespace OnlinePharmacy.Shared.Domain
         [DataType(DataType.Date)]
         public DateTime DateOut { get; set; }
         public DateTime? DateIn { get; set; }
-        public string? Prescription_Date { get; set; }
         public string? Prescription_Details { get; set; }
-        public virtual Customer? Customer { get; set; }
+        [Required]
         public int? CustomerId { get; set; }
+        public virtual Customer? Customer { get; set; }
         public virtual Staff? Staff { get; set; }
-        public int StaffId { get; set; }
+        public int? StaffId { get; set; }
 
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {

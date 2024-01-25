@@ -36,7 +36,7 @@ namespace OnlinePharmacy.Server.Controllers
             //    return NotFound();
             //}
             //return await _context.Prescriptions.ToListAsync();
-            var prescriptions = await _unitOfWork.Prescriptions.GetAll();
+            var prescriptions = await _unitOfWork.Prescriptions.GetAll(includes: q => q.Include(x => x.Customer));
             return Ok(prescriptions);
         }
 
@@ -99,10 +99,10 @@ namespace OnlinePharmacy.Server.Controllers
         [HttpPost]
         public async Task<ActionResult<Prescription>> PostPrescription(Prescription prescription)
         {
-            //if (_context.Prescriptions == null)
-            //{
-            //    return Problem("Entity set 'ApplicationDbContext.Prescriptions'  is null.");
-            //}
+            if (_unitOfWork.Prescriptions == null)
+            {
+                return Problem("Entity set 'ApplicationDbContext.Prescriptions'  is null.");
+            }
             //  _context.Prescriptions.Add(prescription);
             //  await _context.SaveChangesAsync();
             await _unitOfWork.Prescriptions.Insert(prescription);
@@ -115,10 +115,10 @@ namespace OnlinePharmacy.Server.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeletePrescription(int id)
         {
-            //if (_context.Prescriptions == null)
-            //{
-            //    return NotFound();
-            //}
+            if (_unitOfWork.Prescriptions == null)
+            {
+                return NotFound();
+            }
             //var prescription = await _context.Prescriptions.FindAsync(id);
             var prescription = await _unitOfWork.Prescriptions.Get(q => q.Id == id);
             if (prescription == null)
