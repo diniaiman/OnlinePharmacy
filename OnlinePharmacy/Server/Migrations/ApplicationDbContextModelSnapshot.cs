@@ -396,7 +396,7 @@ namespace OnlinePharmacy.Server.Migrations
                         {
                             Id = "3781efa7-66dc-47f0-860f-e506d04102e4",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "ff4057fb-115d-4190-9eb7-288501c80fc1",
+                            ConcurrencyStamp = "c5e71fc6-206f-446f-9687-dc0818e89686",
                             Email = "admin@localhost.com",
                             EmailConfirmed = false,
                             FirstName = "Admin",
@@ -404,9 +404,9 @@ namespace OnlinePharmacy.Server.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@LOCALHOST.COM",
                             NormalizedUserName = "ADMIN@LOCALHOST.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEO6Y4QMO7XqHVMtY0vm3xsGk2g96zQbFy2PLmlALKa21pHzL1FXR568PWF+urzAesQ==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEBe/FiBu6c0LYWfJm4nDSqX19wezI2S3FFFoT9LUlXK8WZorCmZSxGLw4kQY8eaxTg==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "762fd8dd-9270-4b20-af0b-6d702c8dc16c",
+                            SecurityStamp = "d3bd337c-2c6d-4e86-832c-6c14faa94fa6",
                             TwoFactorEnabled = false,
                             UserName = "admin@localhost.com"
                         });
@@ -717,8 +717,8 @@ namespace OnlinePharmacy.Server.Migrations
                             Id = 1,
                             Category = "Cleansers",
                             CreatedBy = "System",
-                            DateCreated = new DateTime(2024, 1, 25, 16, 31, 15, 868, DateTimeKind.Local).AddTicks(8993),
-                            DateUpdated = new DateTime(2024, 1, 25, 16, 31, 15, 868, DateTimeKind.Local).AddTicks(9008),
+                            DateCreated = new DateTime(2024, 1, 25, 17, 42, 4, 960, DateTimeKind.Local).AddTicks(9881),
+                            DateUpdated = new DateTime(2024, 1, 25, 17, 42, 4, 960, DateTimeKind.Local).AddTicks(9900),
                             Description = "Description",
                             Name = "CeraVe Cleanser",
                             Price = 20.0,
@@ -730,8 +730,8 @@ namespace OnlinePharmacy.Server.Migrations
                             Id = 2,
                             Category = "Moisturizers",
                             CreatedBy = "System",
-                            DateCreated = new DateTime(2024, 1, 25, 16, 31, 15, 868, DateTimeKind.Local).AddTicks(9011),
-                            DateUpdated = new DateTime(2024, 1, 25, 16, 31, 15, 868, DateTimeKind.Local).AddTicks(9012),
+                            DateCreated = new DateTime(2024, 1, 25, 17, 42, 4, 960, DateTimeKind.Local).AddTicks(9904),
+                            DateUpdated = new DateTime(2024, 1, 25, 17, 42, 4, 960, DateTimeKind.Local).AddTicks(9905),
                             Description = "Description",
                             Name = "Cetaphil Moisturizer",
                             Price = 20.0,
@@ -840,7 +840,7 @@ namespace OnlinePharmacy.Server.Migrations
             modelBuilder.Entity("OnlinePharmacy.Shared.Domain.Appointment", b =>
                 {
                     b.HasOne("OnlinePharmacy.Shared.Domain.Customer", "Customer")
-                        .WithMany("Appointments")
+                        .WithMany()
                         .HasForeignKey("CustomerId");
 
                     b.HasOne("OnlinePharmacy.Shared.Domain.Staff", "Staff")
@@ -922,11 +922,6 @@ namespace OnlinePharmacy.Server.Migrations
                     b.Navigation("Prescription");
 
                     b.Navigation("Product");
-                });
-
-            modelBuilder.Entity("OnlinePharmacy.Shared.Domain.Customer", b =>
-                {
-                    b.Navigation("Appointments");
                 });
 #pragma warning restore 612, 618
         }

@@ -16,7 +16,7 @@ namespace OnlinePharmacy.Server.Data
         {
         }
 
-        public DbSet<Customer> Users { get; set; }
+        public DbSet<Customer> Customers { get; set; }
         public DbSet<Staff> Staffs { get; set;}
         public DbSet<Product> Products { get; set; }
         public DbSet<Order> Orders { get; set; }
