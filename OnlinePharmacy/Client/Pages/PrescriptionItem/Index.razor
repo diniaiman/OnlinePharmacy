@@ -1,0 +1,80 @@
+﻿@page "/prescriptionitems/"
+@inject HttpClient _client
+@inject IJSRuntime js
+@attribute [Authorize]
+
+<h3 class="card=title">Prescription Items</h3>
+<br />
+
+<a href="/prescriptionitems/create" class="btn btn-secondary">
+    <span class="oi oi-plus"></span>
+    Create New Prescription
+</a>
+<br />
+<br />
+
+@if (PrescriptionItems == null)
+{
+    <div class="alert alert-info">Loading Prescriptions . . .</div>
+}
+else
+{
+    <table class="table table-responsive">
+        <thead>
+            <tr>
+                <th>Customer Username</th>
+                <th>Prescription Date</th>
+                <th>Product</th>
+                <th>Quantity</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var prescriptionitem in PrescriptionItems)
+            {
+                <tr>
+                    <td>@prescriptionitem.Customer.Username</td>
+                    <td>@prescriptionitem.DateCreated.Date.ToString("dd MMMM yyyy")</td>
+                    <td>@prescriptionitem.Product.Name</td>
+                    <td>@prescriptionitem.Quantity</td>
+                    <td>
+                        <a href="/prescription/view/@prescriptionitem.Id" class="btn btn-primary">
+                            <span class="oi oi-book"></span>
+                        </a>
+                        <a href="/prescription/edit/@prescriptionitem.Id" class="btn btn-warning">
+                            <span class="oi oi-pencil"></span>
+                        </a>
+                        <button class="btn btn-danger" @onclick="@(()=>Delete(prescriptionitem.Id))">
+                            <span class="oi oi-delete"></span>
+                        </button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    private List<PrescriptionItem>? PrescriptionItems;
+
+    private DateTime nullDT = new DateTime(1, 1, 1, 0, 0, 0);
+
+    protected async override Task OnInitializedAsync()
+    {
+        PrescriptionItems = await _client.GetFromJsonAsync<List<PrescriptionItem>>($"{Endpoints.PrescriptionItemsEndpoint}");
+    }
+
+    async Task Delete(int prescriptionitemId)
+    {
+        if (PrescriptionItems != null)
+        {
+            var prescriptionitem = PrescriptionItems.First(q => q.Id == prescriptionitemId);
+            var confirm = await js.InvokeAsync<bool>("confirm", $"Do you want to delete {prescriptionitem.Id}?");
+            if (confirm)
+            {
+                await _client.DeleteAsync($"{Endpoints.PrescriptionItemsEndpoint}/{prescriptionitemId}");
+                await OnInitializedAsync();
+            }
+        }
+    }
+}

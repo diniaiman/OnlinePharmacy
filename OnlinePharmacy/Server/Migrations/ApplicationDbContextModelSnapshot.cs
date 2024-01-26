@@ -396,7 +396,7 @@ namespace OnlinePharmacy.Server.Migrations
                         {
                             Id = "3781efa7-66dc-47f0-860f-e506d04102e4",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "5aab9574-84d6-4a47-9005-8a6fce10d649",
+                            ConcurrencyStamp = "053201b4-f759-4a85-ab3b-49643d475e66",
                             Email = "admin@localhost.com",
                             EmailConfirmed = false,
                             FirstName = "Admin",
@@ -404,9 +404,9 @@ namespace OnlinePharmacy.Server.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@LOCALHOST.COM",
                             NormalizedUserName = "ADMIN@LOCALHOST.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEF4lxHtlmXMTq0lYTnQ9om09MhDDvfhPePyUD6tpZWoFXhx02rFg/5foAAnojgQLtw==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEAjt5PaYqkshKlGURIwwqWyKUJ8Ezl3mpwtjM8iinEwaYsFQdWrLcWs4YnfHb/Glqw==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "f22b6767-0bde-49d5-b801-d5ac230531f2",
+                            SecurityStamp = "91e825c2-cf82-49a3-9b56-f16e28d1ba94",
                             TwoFactorEnabled = false,
                             UserName = "admin@localhost.com"
                         });
@@ -635,14 +635,21 @@ namespace OnlinePharmacy.Server.Migrations
                     b.Property<string>("CreatedBy")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("CustomerId")
+                        .IsRequired()
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("DateCreated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DateIn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("DateOut")
                         .HasColumnType("datetime2");
 
                     b.Property<DateTime>("DateUpdated")
                         .HasColumnType("datetime2");
-
-                    b.Property<int>("PrescriptionId")
-                        .HasColumnType("int");
 
                     b.Property<int>("ProductId")
                         .HasColumnType("int");
@@ -655,7 +662,7 @@ namespace OnlinePharmacy.Server.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("PrescriptionId");
+                    b.HasIndex("CustomerId");
 
                     b.HasIndex("ProductId");
 
@@ -707,8 +714,8 @@ namespace OnlinePharmacy.Server.Migrations
                             Id = 1,
                             Category = "Cleansers",
                             CreatedBy = "System",
-                            DateCreated = new DateTime(2024, 1, 26, 1, 38, 23, 675, DateTimeKind.Local).AddTicks(622),
-                            DateUpdated = new DateTime(2024, 1, 26, 1, 38, 23, 675, DateTimeKind.Local).AddTicks(631),
+                            DateCreated = new DateTime(2024, 1, 26, 16, 8, 37, 691, DateTimeKind.Local).AddTicks(7657),
+                            DateUpdated = new DateTime(2024, 1, 26, 16, 8, 37, 691, DateTimeKind.Local).AddTicks(7670),
                             Description = "Description",
                             Name = "CeraVe Cleanser",
                             Price = 20.0,
@@ -720,8 +727,8 @@ namespace OnlinePharmacy.Server.Migrations
                             Id = 2,
                             Category = "Moisturizers",
                             CreatedBy = "System",
-                            DateCreated = new DateTime(2024, 1, 26, 1, 38, 23, 675, DateTimeKind.Local).AddTicks(634),
-                            DateUpdated = new DateTime(2024, 1, 26, 1, 38, 23, 675, DateTimeKind.Local).AddTicks(635),
+                            DateCreated = new DateTime(2024, 1, 26, 16, 8, 37, 691, DateTimeKind.Local).AddTicks(7673),
+                            DateUpdated = new DateTime(2024, 1, 26, 16, 8, 37, 691, DateTimeKind.Local).AddTicks(7674),
                             Description = "Description",
                             Name = "Cetaphil Moisturizer",
                             Price = 20.0,
@@ -899,9 +906,9 @@ namespace OnlinePharmacy.Server.Migrations
 
             modelBuilder.Entity("OnlinePharmacy.Shared.Domain.PrescriptionItem", b =>
                 {
-                    b.HasOne("OnlinePharmacy.Shared.Domain.Prescription", "Prescription")
+                    b.HasOne("OnlinePharmacy.Shared.Domain.Customer", "Customer")
                         .WithMany()
-                        .HasForeignKey("PrescriptionId")
+                        .HasForeignKey("CustomerId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -911,7 +918,7 @@ namespace OnlinePharmacy.Server.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Prescription");
+                    b.Navigation("Customer");
 
                     b.Navigation("Product");
                 });

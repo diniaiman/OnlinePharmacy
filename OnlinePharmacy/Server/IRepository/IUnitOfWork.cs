@@ -18,7 +18,7 @@ namespace OnlinePharmacy.Server.IRepository
         IGenericRepository<Prescription> Prescriptions { get; }
         IGenericRepository<Staff> Staffs { get; }
         IGenericRepository<Customer> Customers { get; }
-
         IGenericRepository<OrderItem> OrderItems { get; }
+        IGenericRepository<PrescriptionItem> PrescriptionItems { get; }
     }
 }
