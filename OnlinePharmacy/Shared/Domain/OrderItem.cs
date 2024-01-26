@@ -13,6 +13,7 @@ namespace OnlinePharmacy.Shared.Domain
         public int ProductId {  get; set; }
         public virtual Order? Order { get; set; }
         public int OrderId { get; set; }
+      
 
 
     }
