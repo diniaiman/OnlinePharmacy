@@ -30,17 +30,6 @@
             </div>
         </div>
 
-        @if (prescription.Id > 0)
-        {
-            <div class="form-group">
-                <label>Date In: </label>
-                <div>
-                    <InputDate @bind-Value="@prescription.DateIn" class="form-control" />
-                    <ValidationMessage For="@(() => prescription.DateIn)" />
-                </div>
-            </div>
-        }
-
         <div class="form-group">
             <label>Details: </label>
             <div>

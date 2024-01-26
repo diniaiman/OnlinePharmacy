@@ -23,7 +23,7 @@
         </div>
 
         <div class="form-group">
-            <label>Appointment Date: </label>
+            <label>Appointment Made: </label>
             <div>
                 <InputDate @bind-Value="@appointment.DateOut" class="form-control" />
                 <ValidationMessage For="@(() => appointment.DateOut)" />
@@ -33,7 +33,7 @@
         @if (appointment.Id > 0)
         {
             <div class="form-group">
-                <label>Date In: </label>
+                <label>Appointment Date: </label>
                 <div>
                     <InputDate @bind-Value="@appointment.DateIn" class="form-control" />
                     <ValidationMessage For="@(() => appointment.DateIn)" />
