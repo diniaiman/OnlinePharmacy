@@ -1,0 +1,80 @@
+﻿@page "/orderitems/create"
+@inject HttpClient _client
+@inject NavigationManager _navManager
+
+<h3>Create</h3>
+
+<h3 class="card-title">Create New Order Item</h3>
+<hr />
+<br />
+
+<EditForm Model="@orderitem" OnValidSubmit="CreateOrderItem">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+        <div class="form-group">
+            <label>Date: </label>
+            <div>
+                <InputSelect @bind-Value="orderitem.OrderId" class="form-control">
+                    <option value=" "> -- Select Date -- </option>
+                    @if (Orders != null)
+                    {
+                        foreach (var order in Orders)
+                        {
+                            <option value="@order.Id">@order.Order_Date</option>
+                        }
+                    }
+                </InputSelect>
+                <ValidationMessage For="@(() => orderitem.OrderId)" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>Product: </label>
+            <div>
+                <InputSelect @bind-Value="orderitem.ProductId" class="form-control">
+                    <option value=" "> -- Select Product -- </option>
+                    @if (Products != null)
+                    {
+                        foreach (var product in Products)
+                        {
+                            <option value="@product.Id">@product.Name</option>
+                        }
+                    }
+                </InputSelect>
+                <ValidationMessage For="@(() => orderitem.ProductId)" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Quantity: </label>
+            <div>
+                <InputNumber @bind-Value="@orderitem.Quantity" class="form-control" />
+                <ValidationMessage For="@(() => orderitem.Quantity)" />
+            </div>
+        </div>
+
+
+    <button type="submit" class="btn btn-success btn-block">
+        Create Order Item
+    </button>
+
+</EditForm>
+
+@code {
+    OrderItem orderitem = new OrderItem();
+
+    private IList<Product>? Products;
+    private IList<Order>? Orders;
+
+    protected async override Task OnInitializedAsync()
+    {
+        Products = await _client.GetFromJsonAsync<List<Product>>($"{Endpoints.ProductsEndpoint}");
+        Orders = await _client.GetFromJsonAsync<List<Order>>($"{Endpoints.OrdersEndpoint}");
+    }
+
+    private async Task CreateOrderItem()
+    {
+        await _client.PostAsJsonAsync(Endpoints.OrderItemsEndpoint, orderitem);
+        _navManager.NavigateTo("/orderitems/");
+    }
+}
