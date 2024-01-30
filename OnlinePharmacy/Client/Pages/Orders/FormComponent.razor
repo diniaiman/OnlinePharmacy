@@ -23,9 +23,11 @@
         </div>
         <div class="form-group">
             <label>Order Date: </label>
-            <div>
-                <InputText @bind-Value="@order.Order_Date" class="form-control" />
-                <ValidationMessage For="@(() => order.Order_Date)" />
+            <div class="form-group">
+                <div>
+                    <InputDate @bind-Value="@order.DateOut" class="form-control" />
+                    <ValidationMessage For="@(() => order.DateOut)" />
+                </div>
             </div>
         </div>
     </fieldset>

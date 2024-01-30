@@ -387,8 +387,8 @@ namespace OnlinePharmacy.Server.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Order_Date = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Order_Status = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    DateOut = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    DateIn = table.Column<DateTime>(type: "datetime2", nullable: true),
                     CustomerId = table.Column<int>(type: "int", nullable: false),
                     StaffId = table.Column<int>(type: "int", nullable: true),
                     DateCreated = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -456,15 +456,15 @@ namespace OnlinePharmacy.Server.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "FirstName", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "3781efa7-66dc-47f0-860f-e506d04102e4", 0, "b14b83f3-f609-4466-b816-75f8a421f83b", "admin@localhost.com", false, "Admin", "User", false, null, "ADMIN@LOCALHOST.COM", "ADMIN@LOCALHOST.COM", "AQAAAAIAAYagAAAAEPsOEK1EqQ9HRin7ZtsTccCgYo/kzg4jSdH+rsJNci8cuye0CEdpc7eJA2X7LjKRbg==", null, false, "15e80ccd-15a3-439d-a0aa-13469dbc3be3", false, "admin@localhost.com" });
+                values: new object[] { "3781efa7-66dc-47f0-860f-e506d04102e4", 0, "3c83b0aa-6556-4fd6-aad0-f0a4d154b4af", "admin@localhost.com", false, "Admin", "User", false, null, "ADMIN@LOCALHOST.COM", "ADMIN@LOCALHOST.COM", "AQAAAAIAAYagAAAAEBV/P39/Kan/Lf7hM9bdez+NJzYbWwQW0uqKL7jqgShf+S5/dj8Tle66qtXjW1jYnA==", null, false, "2017deb4-2e63-4e1f-9d1d-f0ad7f284d09", false, "admin@localhost.com" });
 
             migrationBuilder.InsertData(
                 table: "Products",
                 columns: new[] { "Id", "Category", "CreatedBy", "DateCreated", "DateUpdated", "Description", "Name", "Price", "Quantity", "UpdatedBy" },
                 values: new object[,]
                 {
-                    { 1, "Cleansers", "System", new DateTime(2024, 1, 30, 14, 58, 32, 905, DateTimeKind.Local).AddTicks(410), new DateTime(2024, 1, 30, 14, 58, 32, 905, DateTimeKind.Local).AddTicks(429), "Description", "CeraVe Cleanser", 20.0, 9, "System" },
-                    { 2, "Moisturizers", "System", new DateTime(2024, 1, 30, 14, 58, 32, 905, DateTimeKind.Local).AddTicks(433), new DateTime(2024, 1, 30, 14, 58, 32, 905, DateTimeKind.Local).AddTicks(433), "Description", "Cetaphil Moisturizer", 20.0, 8, "System" }
+                    { 1, "Cleansers", "System", new DateTime(2024, 1, 30, 15, 12, 13, 328, DateTimeKind.Local).AddTicks(9885), new DateTime(2024, 1, 30, 15, 12, 13, 328, DateTimeKind.Local).AddTicks(9902), "Description", "CeraVe Cleanser", 20.0, 9, "System" },
+                    { 2, "Moisturizers", "System", new DateTime(2024, 1, 30, 15, 12, 13, 328, DateTimeKind.Local).AddTicks(9906), new DateTime(2024, 1, 30, 15, 12, 13, 328, DateTimeKind.Local).AddTicks(9907), "Description", "Cetaphil Moisturizer", 20.0, 8, "System" }
                 });
 
             migrationBuilder.InsertData(
