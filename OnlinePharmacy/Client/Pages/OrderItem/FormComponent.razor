@@ -6,15 +6,15 @@
 
     <fieldset disabled="@Disabled">
         <div class="form-group">
-            <label>Customer: </label>
+            <label>Date: </label>
             <div>
                 <InputSelect @bind-Value="orderitem.OrderId" class="form-control">
-                    <option value=" "> -- Select Customer -- </option>
+                    <option value=" "> -- Select Date -- </option>
                     @if (Orders != null)
                     {
                         foreach (var order in Orders)
                         {
-                            <option value="@order.Id">@order.Customer</option>
+                            <option value="@order.Id">@order.Order_Date</option>
                         }
                     }
                 </InputSelect>
@@ -47,6 +47,16 @@
         </div>
 
     </fieldset>
+
+    <br />
+    <br />
+
+    @if (!Disabled)
+    {
+        <button type="submit" class="btn btn-success btn-block">
+            @ButtonText
+        </button>
+    }
 
  
 </EditForm>
