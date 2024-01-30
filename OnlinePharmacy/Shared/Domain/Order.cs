@@ -11,12 +11,27 @@ namespace OnlinePharmacy.Shared.Domain
     public class Order : BaseDomainModel 
     {
 
-        public string? Order_Date{ get; set; }
-        public string? Order_Status { get; set; }
+        [Required]
+        [DataType(DataType.Date)]
+        public DateTime DateOut { get; set; }
+        public DateTime? DateIn { get; set; }
         public virtual Customer? Customer { get; set; }
         public int CustomerId {  get; set; }
         public virtual Staff? Staff { get; set; }
 
-        
+        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
+        {
+            //throw new NotImplementedException();
+
+            if (DateIn != null)
+            {
+                if (DateIn <= DateOut)
+                {
+                    yield return new ValidationResult("DateIn must be greater than DateOut", new[] { "DateIn" });
+                }
+            }
+        }
+
+
     }
 }
