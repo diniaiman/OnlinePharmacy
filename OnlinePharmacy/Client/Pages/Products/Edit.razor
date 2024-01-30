@@ -21,7 +21,7 @@
     async Task EditProduct()
     {
         await _client.PutAsJsonAsync($"{Endpoints.ProductsEndpoint}/{id}", product);
-        _navManager.NavigateTo("/product/");
+        _navManager.NavigateTo("/products/");
     }
 
 }

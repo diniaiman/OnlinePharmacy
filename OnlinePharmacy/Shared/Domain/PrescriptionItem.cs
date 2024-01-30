@@ -17,9 +17,9 @@ namespace OnlinePharmacy.Shared.Domain
         public int ProductId { get; set; }
         public virtual Product? Product { get; set; }
         [Required]
-        public int? CustomerId { get; set; }
+        public int CustomerId { get; set; }
         public virtual Customer? Customer { get; set; }
-        public int? Quantity { get; set; }
+        public int Quantity { get; set; }
 
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {

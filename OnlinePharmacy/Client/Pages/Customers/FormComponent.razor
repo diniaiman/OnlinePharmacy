@@ -1,4 +1,6 @@
-﻿<EditForm Model="@customer" OnValidSubmit="@OnValidSubmit">
+﻿@inject HttpClient _client
+
+<EditForm Model="@customer" OnValidSubmit="@OnValidSubmit">
     <DataAnnotationsValidator />
     <ValidationSummary />
 
