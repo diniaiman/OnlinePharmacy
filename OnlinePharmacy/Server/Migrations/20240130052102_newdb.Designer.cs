@@ -12,7 +12,7 @@ using OnlinePharmacy.Server.Data;
 namespace OnlinePharmacy.Server.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240126080837_newdb")]
+    [Migration("20240130052102_newdb")]
     partial class newdb
     {
         /// <inheritdoc />
@@ -399,7 +399,7 @@ namespace OnlinePharmacy.Server.Migrations
                         {
                             Id = "3781efa7-66dc-47f0-860f-e506d04102e4",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "053201b4-f759-4a85-ab3b-49643d475e66",
+                            ConcurrencyStamp = "836ef703-7273-4e9e-8d58-573bc719cd10",
                             Email = "admin@localhost.com",
                             EmailConfirmed = false,
                             FirstName = "Admin",
@@ -407,9 +407,9 @@ namespace OnlinePharmacy.Server.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@LOCALHOST.COM",
                             NormalizedUserName = "ADMIN@LOCALHOST.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEAjt5PaYqkshKlGURIwwqWyKUJ8Ezl3mpwtjM8iinEwaYsFQdWrLcWs4YnfHb/Glqw==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEIvSy08vqalGNOISq4pxvKnjKl32IUnwFNSbYXZX8TF5agVZxfSBpIzBbfNzadpdJA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "91e825c2-cf82-49a3-9b56-f16e28d1ba94",
+                            SecurityStamp = "54879c5d-ec22-47df-9b17-7c60e10423d0",
                             TwoFactorEnabled = false,
                             UserName = "admin@localhost.com"
                         });
@@ -717,8 +717,8 @@ namespace OnlinePharmacy.Server.Migrations
                             Id = 1,
                             Category = "Cleansers",
                             CreatedBy = "System",
-                            DateCreated = new DateTime(2024, 1, 26, 16, 8, 37, 691, DateTimeKind.Local).AddTicks(7657),
-                            DateUpdated = new DateTime(2024, 1, 26, 16, 8, 37, 691, DateTimeKind.Local).AddTicks(7670),
+                            DateCreated = new DateTime(2024, 1, 30, 13, 21, 2, 444, DateTimeKind.Local).AddTicks(6693),
+                            DateUpdated = new DateTime(2024, 1, 30, 13, 21, 2, 444, DateTimeKind.Local).AddTicks(6701),
                             Description = "Description",
                             Name = "CeraVe Cleanser",
                             Price = 20.0,
@@ -730,8 +730,8 @@ namespace OnlinePharmacy.Server.Migrations
                             Id = 2,
                             Category = "Moisturizers",
                             CreatedBy = "System",
-                            DateCreated = new DateTime(2024, 1, 26, 16, 8, 37, 691, DateTimeKind.Local).AddTicks(7673),
-                            DateUpdated = new DateTime(2024, 1, 26, 16, 8, 37, 691, DateTimeKind.Local).AddTicks(7674),
+                            DateCreated = new DateTime(2024, 1, 30, 13, 21, 2, 444, DateTimeKind.Local).AddTicks(6704),
+                            DateUpdated = new DateTime(2024, 1, 30, 13, 21, 2, 444, DateTimeKind.Local).AddTicks(6705),
                             Description = "Description",
                             Name = "Cetaphil Moisturizer",
                             Price = 20.0,
