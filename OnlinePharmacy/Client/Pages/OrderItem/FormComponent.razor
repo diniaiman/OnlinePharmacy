@@ -6,19 +6,28 @@
 
     <fieldset disabled="@Disabled">
         <div class="form-group">
-            <label>Date: </label>
+            <label>Customer: </label>
             <div>
-                <InputSelect @bind-Value="orderitem.OrderId" class="form-control">
-                    <option value=" "> -- Select Date -- </option>
-                    @if (Orders != null)
+                <InputSelect @bind-Value="orderitem.CustomerId" class="form-control">
+                    <option value=" "> -- Select Customer -- </option>
+                    @if (Customers != null)
                     {
-                        foreach (var order in Orders)
+                        foreach (var customer in Customers)
                         {
-                            <option value="@order.Id">@order.Order_Date</option>
+                            <option value="@customer.Id">@customer.Username</option>
                         }
                     }
                 </InputSelect>
-                <ValidationMessage For="@(() => orderitem.OrderId)" />
+                <ValidationMessage For="@(() => orderitem.CustomerId)" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Order Date: </label>
+            <div class="form-group">
+                <div>
+                    <InputDate @bind-Value="@orderitem.DateOut" class="form-control" />
+                    <ValidationMessage For="@(() => orderitem.DateOut)" />
+                </div>
             </div>
         </div>
 
@@ -70,11 +79,12 @@
 
 
     private IList<Product>? Products;
-    private IList<Order>? Orders;
+    private IList<Customer>? Customers;
 
     protected async override Task OnInitializedAsync()
     {
         Products = await _client.GetFromJsonAsync<List<Product>>($"{Endpoints.ProductsEndpoint}");
-        Orders = await _client.GetFromJsonAsync<List<Order>>($"{Endpoints.OrdersEndpoint}");
+        Customers = await _client.GetFromJsonAsync<List<Customer>>($"{Endpoints.CustomersEndpoint}");
+
     }
 }

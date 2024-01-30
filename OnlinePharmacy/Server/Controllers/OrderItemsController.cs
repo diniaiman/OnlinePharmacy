@@ -26,13 +26,13 @@ namespace OnlinePharmacy.Server.Controllers
         [HttpGet]
         public async Task<IActionResult> GetOrderItems()
         {
-            var orderitems = await _unitOfWork.OrderItems.GetAll(includes: q => q.Include(x => x.Order).Include(x => x.Product)); 
+            var orderitems = await _unitOfWork.OrderItems.GetAll(includes: q => q.Include(x => x.Product).Include(x => x.Customer));
             return Ok(orderitems);
         }
 
         // GET: api/OrderItems/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<OrderItem>> GetOrderItem(int id)
+        public async Task<IActionResult> GetOrderItem(int id)
         {
             var orderitem = await _unitOfWork.OrderItems.Get(q => q.Id == id);
 
@@ -81,21 +81,32 @@ namespace OnlinePharmacy.Server.Controllers
         [HttpPost]
         public async Task<ActionResult<OrderItem>> PostOrderItem(OrderItem orderitem)
         {
+            if (_unitOfWork.OrderItems == null)
+            {
+                return Problem("Entity set 'ApplicationDbContext.OrderItems'  is null.");
+            }
+
             await _unitOfWork.OrderItems.Insert(orderitem);
             await _unitOfWork.Save(HttpContext);
 
-            return CreatedAtAction("GetOrder", new { id = orderitem.Id }, orderitem);
+            return CreatedAtAction("GetOrderItem", new { id = orderitem.Id }, orderitem);
         }
 
         // DELETE: api/OrderItems/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteOrderItem(int id)
         {
+            if (_unitOfWork.OrderItems == null)
+            {
+                return NotFound();
+            }
+
             var order = await _unitOfWork.OrderItems.Get(q => q.Id == id);
             if (order == null)
             {
                 return NotFound();
             }
+
             await _unitOfWork.OrderItems.Delete(id);
             await _unitOfWork.Save(HttpContext);
 

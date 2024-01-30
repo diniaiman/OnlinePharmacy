@@ -12,7 +12,7 @@ using OnlinePharmacy.Server.Data;
 namespace OnlinePharmacy.Server.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240130052102_newdb")]
+    [Migration("20240130063858_newdb")]
     partial class newdb
     {
         /// <inheritdoc />
@@ -399,7 +399,7 @@ namespace OnlinePharmacy.Server.Migrations
                         {
                             Id = "3781efa7-66dc-47f0-860f-e506d04102e4",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "836ef703-7273-4e9e-8d58-573bc719cd10",
+                            ConcurrencyStamp = "98b264e5-823f-491d-a893-51621c8c00c7",
                             Email = "admin@localhost.com",
                             EmailConfirmed = false,
                             FirstName = "Admin",
@@ -407,9 +407,9 @@ namespace OnlinePharmacy.Server.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@LOCALHOST.COM",
                             NormalizedUserName = "ADMIN@LOCALHOST.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEIvSy08vqalGNOISq4pxvKnjKl32IUnwFNSbYXZX8TF5agVZxfSBpIzBbfNzadpdJA==",
+                            PasswordHash = "AQAAAAIAAYagAAAAENvWlE1jzLGYr+5lMoHkTKFFUMMzwnvw/tXQCB35/n65vTu8wMoeGk2DdNwhzJ6EvQ==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "54879c5d-ec22-47df-9b17-7c60e10423d0",
+                            SecurityStamp = "21f3bdbf-20fe-464e-874f-3a254b93fe24",
                             TwoFactorEnabled = false,
                             UserName = "admin@localhost.com"
                         });
@@ -555,14 +555,20 @@ namespace OnlinePharmacy.Server.Migrations
                     b.Property<string>("CreatedBy")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("CustomerId")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("DateCreated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DateIn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("DateOut")
                         .HasColumnType("datetime2");
 
                     b.Property<DateTime>("DateUpdated")
                         .HasColumnType("datetime2");
-
-                    b.Property<int>("OrderId")
-                        .HasColumnType("int");
 
                     b.Property<int>("ProductId")
                         .HasColumnType("int");
@@ -575,7 +581,7 @@ namespace OnlinePharmacy.Server.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("OrderId");
+                    b.HasIndex("CustomerId");
 
                     b.HasIndex("ProductId");
 
@@ -638,8 +644,7 @@ namespace OnlinePharmacy.Server.Migrations
                     b.Property<string>("CreatedBy")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("CustomerId")
-                        .IsRequired()
+                    b.Property<int>("CustomerId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("DateCreated")
@@ -657,7 +662,7 @@ namespace OnlinePharmacy.Server.Migrations
                     b.Property<int>("ProductId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("Quantity")
+                    b.Property<int>("Quantity")
                         .HasColumnType("int");
 
                     b.Property<string>("UpdatedBy")
@@ -717,8 +722,8 @@ namespace OnlinePharmacy.Server.Migrations
                             Id = 1,
                             Category = "Cleansers",
                             CreatedBy = "System",
-                            DateCreated = new DateTime(2024, 1, 30, 13, 21, 2, 444, DateTimeKind.Local).AddTicks(6693),
-                            DateUpdated = new DateTime(2024, 1, 30, 13, 21, 2, 444, DateTimeKind.Local).AddTicks(6701),
+                            DateCreated = new DateTime(2024, 1, 30, 14, 38, 58, 673, DateTimeKind.Local).AddTicks(2687),
+                            DateUpdated = new DateTime(2024, 1, 30, 14, 38, 58, 673, DateTimeKind.Local).AddTicks(2698),
                             Description = "Description",
                             Name = "CeraVe Cleanser",
                             Price = 20.0,
@@ -730,8 +735,8 @@ namespace OnlinePharmacy.Server.Migrations
                             Id = 2,
                             Category = "Moisturizers",
                             CreatedBy = "System",
-                            DateCreated = new DateTime(2024, 1, 30, 13, 21, 2, 444, DateTimeKind.Local).AddTicks(6704),
-                            DateUpdated = new DateTime(2024, 1, 30, 13, 21, 2, 444, DateTimeKind.Local).AddTicks(6705),
+                            DateCreated = new DateTime(2024, 1, 30, 14, 38, 58, 673, DateTimeKind.Local).AddTicks(2704),
+                            DateUpdated = new DateTime(2024, 1, 30, 14, 38, 58, 673, DateTimeKind.Local).AddTicks(2704),
                             Description = "Description",
                             Name = "Cetaphil Moisturizer",
                             Price = 20.0,
@@ -873,9 +878,9 @@ namespace OnlinePharmacy.Server.Migrations
 
             modelBuilder.Entity("OnlinePharmacy.Shared.Domain.OrderItem", b =>
                 {
-                    b.HasOne("OnlinePharmacy.Shared.Domain.Order", "Order")
+                    b.HasOne("OnlinePharmacy.Shared.Domain.Customer", "Customer")
                         .WithMany()
-                        .HasForeignKey("OrderId")
+                        .HasForeignKey("CustomerId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -885,7 +890,7 @@ namespace OnlinePharmacy.Server.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Order");
+                    b.Navigation("Customer");
 
                     b.Navigation("Product");
                 });

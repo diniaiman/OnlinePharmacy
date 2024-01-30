@@ -32,7 +32,8 @@ else
             @foreach (var orderitem in OrderItems)
             {
                 <tr>
-                    <td>@orderitem.Order.Order_Date</td>
+                    <td>@orderitem.Customer.Username</td>
+                    <td>@orderitem.DateCreated.Date.ToString("dd MMMM yyyy")</td>
                     <td>@orderitem.Product.Name</td>
                     <td>@orderitem.Quantity</td>
                     <td>
