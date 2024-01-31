@@ -38,10 +38,10 @@ else
                     <td>@prescriptionitem.Product.Name</td>
                     <td>@prescriptionitem.Quantity</td>
                     <td>
-                        <a href="/prescription/view/@prescriptionitem.Id" class="btn btn-primary">
+                        <a href="/prescriptionitems/view/@prescriptionitem.Id" class="btn btn-primary">
                             <span class="oi oi-book"></span>
                         </a>
-                        <a href="/prescription/edit/@prescriptionitem.Id" class="btn btn-warning">
+                        <a href="/prescriptionitems/edit/@prescriptionitem.Id" class="btn btn-warning">
                             <span class="oi oi-pencil"></span>
                         </a>
                         <button class="btn btn-danger" @onclick="@(()=>Delete(prescriptionitem.Id))">
