@@ -24,7 +24,6 @@ else
         <thead>
             <tr>
                 <th>Name</th>
-                <th>Password</th>
                 <th>Contacts</th>
                 <th>Gender</th>
                 <th>Email</th>
@@ -41,7 +40,7 @@ else
                     <td>@customer.PhoneNo</td>
                     <td>@customer.Gender</td>
                     <td>@customer.Email</td>
-                    <td>@customer.DateOfBirth</td>
+                    <td>@customer.DateOut.Date.ToString("dd MMMM yyyy")</td>
                     <td>@customer.Address</td>
                     <td>
                         <a href="/customer/view/@customer.Id" class="btn btn-primary">
