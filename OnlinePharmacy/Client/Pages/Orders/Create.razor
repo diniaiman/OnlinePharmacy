@@ -22,6 +22,6 @@
     private async Task CreateOrder()
     {
         await _client.PostAsJsonAsync(Endpoints.OrdersEndpoint, order);
-        _navManager.NavigateTo("/orders/");
+        _navManager.NavigateTo("/orderitems/create");
     }
 }
