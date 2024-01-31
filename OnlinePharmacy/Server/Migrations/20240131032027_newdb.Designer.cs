@@ -12,7 +12,7 @@ using OnlinePharmacy.Server.Data;
 namespace OnlinePharmacy.Server.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240130071213_newdb")]
+    [Migration("20240131032027_newdb")]
     partial class newdb
     {
         /// <inheritdoc />
@@ -399,7 +399,7 @@ namespace OnlinePharmacy.Server.Migrations
                         {
                             Id = "3781efa7-66dc-47f0-860f-e506d04102e4",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "3c83b0aa-6556-4fd6-aad0-f0a4d154b4af",
+                            ConcurrencyStamp = "4a2657ea-4cda-45a9-959b-04b7171c9ba6",
                             Email = "admin@localhost.com",
                             EmailConfirmed = false,
                             FirstName = "Admin",
@@ -407,9 +407,9 @@ namespace OnlinePharmacy.Server.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@LOCALHOST.COM",
                             NormalizedUserName = "ADMIN@LOCALHOST.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEBV/P39/Kan/Lf7hM9bdez+NJzYbWwQW0uqKL7jqgShf+S5/dj8Tle66qtXjW1jYnA==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEJiPc4hSnZ4/6IRygheIb79BVL9hoeizdLKYJ/5kLkFQI4fWMKZ9yCcJJMX9whjYlA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "2017deb4-2e63-4e1f-9d1d-f0ad7f284d09",
+                            SecurityStamp = "7b0bfda6-822e-4427-8438-99e5300d4b67",
                             TwoFactorEnabled = false,
                             UserName = "admin@localhost.com"
                         });
@@ -484,9 +484,6 @@ namespace OnlinePharmacy.Server.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Gender")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Password")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PhoneNo")
@@ -722,8 +719,8 @@ namespace OnlinePharmacy.Server.Migrations
                             Id = 1,
                             Category = "Cleansers",
                             CreatedBy = "System",
-                            DateCreated = new DateTime(2024, 1, 30, 15, 12, 13, 328, DateTimeKind.Local).AddTicks(9885),
-                            DateUpdated = new DateTime(2024, 1, 30, 15, 12, 13, 328, DateTimeKind.Local).AddTicks(9902),
+                            DateCreated = new DateTime(2024, 1, 31, 11, 20, 27, 772, DateTimeKind.Local).AddTicks(3009),
+                            DateUpdated = new DateTime(2024, 1, 31, 11, 20, 27, 772, DateTimeKind.Local).AddTicks(3023),
                             Description = "Description",
                             Name = "CeraVe Cleanser",
                             Price = 20.0,
@@ -735,8 +732,8 @@ namespace OnlinePharmacy.Server.Migrations
                             Id = 2,
                             Category = "Moisturizers",
                             CreatedBy = "System",
-                            DateCreated = new DateTime(2024, 1, 30, 15, 12, 13, 328, DateTimeKind.Local).AddTicks(9906),
-                            DateUpdated = new DateTime(2024, 1, 30, 15, 12, 13, 328, DateTimeKind.Local).AddTicks(9907),
+                            DateCreated = new DateTime(2024, 1, 31, 11, 20, 27, 772, DateTimeKind.Local).AddTicks(3027),
+                            DateUpdated = new DateTime(2024, 1, 31, 11, 20, 27, 772, DateTimeKind.Local).AddTicks(3027),
                             Description = "Description",
                             Name = "Cetaphil Moisturizer",
                             Price = 20.0,
