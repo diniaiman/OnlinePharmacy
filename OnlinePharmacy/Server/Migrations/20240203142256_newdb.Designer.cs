@@ -12,7 +12,7 @@ using OnlinePharmacy.Server.Data;
 namespace OnlinePharmacy.Server.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240203110827_newdb")]
+    [Migration("20240203142256_newdb")]
     partial class newdb
     {
         /// <inheritdoc />
@@ -399,7 +399,7 @@ namespace OnlinePharmacy.Server.Migrations
                         {
                             Id = "3781efa7-66dc-47f0-860f-e506d04102e4",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "bd0cdcf1-8a99-4a43-86d2-48b4bc5b379e",
+                            ConcurrencyStamp = "3dbb91fc-d560-417e-8876-ced0eba6a665",
                             Email = "admin@localhost.com",
                             EmailConfirmed = false,
                             FirstName = "Admin",
@@ -407,9 +407,9 @@ namespace OnlinePharmacy.Server.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@LOCALHOST.COM",
                             NormalizedUserName = "ADMIN@LOCALHOST.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEHlqmcBv8qqR0xpunhslZAH3LS/Y+qGzYDbNA+eFenBPNS1R0pfXh6ZO7F4/uqk8Cw==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEJPc9JB+qoryGCfwGsqI7JCTKgGrrxcva5dke/VgkItymXvFBwIxmecnsL0U97t6UA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "e67b6e37-3ac5-4f67-ba18-0684caebc899",
+                            SecurityStamp = "31df9002-062c-4de0-bfe5-e77eb3a40e49",
                             TwoFactorEnabled = false,
                             UserName = "admin@localhost.com"
                         });
@@ -616,7 +616,9 @@ namespace OnlinePharmacy.Server.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Prescription_Details")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<int?>("StaffId")
                         .HasColumnType("int");
@@ -722,8 +724,8 @@ namespace OnlinePharmacy.Server.Migrations
                             Id = 1,
                             Category = "Cleansers",
                             CreatedBy = "System",
-                            DateCreated = new DateTime(2024, 2, 3, 19, 8, 27, 708, DateTimeKind.Local).AddTicks(782),
-                            DateUpdated = new DateTime(2024, 2, 3, 19, 8, 27, 708, DateTimeKind.Local).AddTicks(794),
+                            DateCreated = new DateTime(2024, 2, 3, 22, 22, 56, 287, DateTimeKind.Local).AddTicks(9919),
+                            DateUpdated = new DateTime(2024, 2, 3, 22, 22, 56, 287, DateTimeKind.Local).AddTicks(9929),
                             Description = "Description",
                             Name = "CeraVe Cleanser",
                             Price = 20.0,
@@ -735,8 +737,8 @@ namespace OnlinePharmacy.Server.Migrations
                             Id = 2,
                             Category = "Moisturizers",
                             CreatedBy = "System",
-                            DateCreated = new DateTime(2024, 2, 3, 19, 8, 27, 708, DateTimeKind.Local).AddTicks(796),
-                            DateUpdated = new DateTime(2024, 2, 3, 19, 8, 27, 708, DateTimeKind.Local).AddTicks(797),
+                            DateCreated = new DateTime(2024, 2, 3, 22, 22, 56, 287, DateTimeKind.Local).AddTicks(9933),
+                            DateUpdated = new DateTime(2024, 2, 3, 22, 22, 56, 287, DateTimeKind.Local).AddTicks(9933),
                             Description = "Description",
                             Name = "Cetaphil Moisturizer",
                             Price = 20.0,
@@ -759,29 +761,37 @@ namespace OnlinePharmacy.Server.Migrations
                     b.Property<DateTime>("DateCreated")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("DateOfBirth")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<DateTime?>("DateIn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("DateOut")
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime>("DateUpdated")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Email")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Gender")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Permissions")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<string>("PhoneNo")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("StaffType")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<string>("UpdatedBy")
                         .HasColumnType("nvarchar(max)");

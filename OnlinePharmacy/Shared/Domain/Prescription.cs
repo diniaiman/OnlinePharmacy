@@ -13,6 +13,8 @@ namespace OnlinePharmacy.Shared.Domain
         [DataType(DataType.Date)]
         public DateTime DateOut { get; set; }
         public DateTime? DateIn { get; set; }
+        [Required]
+        [StringLength(100, MinimumLength = 2, ErrorMessage = "Prescription Details does not meet length requirements")]
         public string? Prescription_Details { get; set; }
         [Required]
         public int? CustomerId { get; set; }

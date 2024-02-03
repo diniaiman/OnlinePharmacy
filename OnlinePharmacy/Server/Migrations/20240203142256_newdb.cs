@@ -161,13 +161,13 @@ namespace OnlinePharmacy.Server.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    StaffType = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Gender = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Email = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    PhoneNo = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Permissions = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    DateOfBirth = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    DateOut = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    DateIn = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    StaffType = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    Gender = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    PhoneNo = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     DateCreated = table.Column<DateTime>(type: "datetime2", nullable: false),
                     DateUpdated = table.Column<DateTime>(type: "datetime2", nullable: false),
                     CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -420,7 +420,7 @@ namespace OnlinePharmacy.Server.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     DateOut = table.Column<DateTime>(type: "datetime2", nullable: false),
                     DateIn = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    Prescription_Details = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Prescription_Details = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     CustomerId = table.Column<int>(type: "int", nullable: false),
                     StaffId = table.Column<int>(type: "int", nullable: true),
                     DateCreated = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -456,15 +456,15 @@ namespace OnlinePharmacy.Server.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "FirstName", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "3781efa7-66dc-47f0-860f-e506d04102e4", 0, "bd0cdcf1-8a99-4a43-86d2-48b4bc5b379e", "admin@localhost.com", false, "Admin", "User", false, null, "ADMIN@LOCALHOST.COM", "ADMIN@LOCALHOST.COM", "AQAAAAIAAYagAAAAEHlqmcBv8qqR0xpunhslZAH3LS/Y+qGzYDbNA+eFenBPNS1R0pfXh6ZO7F4/uqk8Cw==", null, false, "e67b6e37-3ac5-4f67-ba18-0684caebc899", false, "admin@localhost.com" });
+                values: new object[] { "3781efa7-66dc-47f0-860f-e506d04102e4", 0, "3dbb91fc-d560-417e-8876-ced0eba6a665", "admin@localhost.com", false, "Admin", "User", false, null, "ADMIN@LOCALHOST.COM", "ADMIN@LOCALHOST.COM", "AQAAAAIAAYagAAAAEJPc9JB+qoryGCfwGsqI7JCTKgGrrxcva5dke/VgkItymXvFBwIxmecnsL0U97t6UA==", null, false, "31df9002-062c-4de0-bfe5-e77eb3a40e49", false, "admin@localhost.com" });
 
             migrationBuilder.InsertData(
                 table: "Products",
                 columns: new[] { "Id", "Category", "CreatedBy", "DateCreated", "DateUpdated", "Description", "Name", "Price", "Quantity", "UpdatedBy" },
                 values: new object[,]
                 {
-                    { 1, "Cleansers", "System", new DateTime(2024, 2, 3, 19, 8, 27, 708, DateTimeKind.Local).AddTicks(782), new DateTime(2024, 2, 3, 19, 8, 27, 708, DateTimeKind.Local).AddTicks(794), "Description", "CeraVe Cleanser", 20.0, 9, "System" },
-                    { 2, "Moisturizers", "System", new DateTime(2024, 2, 3, 19, 8, 27, 708, DateTimeKind.Local).AddTicks(796), new DateTime(2024, 2, 3, 19, 8, 27, 708, DateTimeKind.Local).AddTicks(797), "Description", "Cetaphil Moisturizer", 20.0, 8, "System" }
+                    { 1, "Cleansers", "System", new DateTime(2024, 2, 3, 22, 22, 56, 287, DateTimeKind.Local).AddTicks(9919), new DateTime(2024, 2, 3, 22, 22, 56, 287, DateTimeKind.Local).AddTicks(9929), "Description", "CeraVe Cleanser", 20.0, 9, "System" },
+                    { 2, "Moisturizers", "System", new DateTime(2024, 2, 3, 22, 22, 56, 287, DateTimeKind.Local).AddTicks(9933), new DateTime(2024, 2, 3, 22, 22, 56, 287, DateTimeKind.Local).AddTicks(9933), "Description", "Cetaphil Moisturizer", 20.0, 8, "System" }
                 });
 
             migrationBuilder.InsertData(
