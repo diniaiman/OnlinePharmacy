@@ -29,6 +29,8 @@ namespace OnlinePharmacy.Server.Controllers
         [HttpGet]
         public async Task<IActionResult> GetCustomers()
         {
+            //Test for Global Error Handling
+            //return NotFound();
             var customers = await _unitOfWork.Customers.GetAll();
             return Ok(customers);
         }

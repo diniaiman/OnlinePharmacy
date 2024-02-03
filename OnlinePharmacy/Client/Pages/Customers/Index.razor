@@ -1,5 +1,8 @@
 ﻿@page "/customers/"
 @inject HttpClient _client
+@inject NavigationManager _navManager
+@inject HttpInterceptorService _interceptor
+@implements IDisposable
 @inject IJSRuntime js
 @attribute [Authorize]
 
@@ -24,7 +27,6 @@ else
         <thead>
             <tr>
                 <th>Name</th>
-                <th>Password</th>
                 <th>Contacts</th>
                 <th>Gender</th>
                 <th>Email</th>
@@ -67,6 +69,7 @@ else
 
     protected async override Task OnInitializedAsync()
     {
+        _interceptor.MonitorEvent();
         Customers = await _client.GetFromJsonAsync<List<Customer>>($"{Endpoints.CustomersEndpoint}");
     }
 
@@ -82,5 +85,10 @@ else
                 await OnInitializedAsync();
             }
         }
+    }
+
+    public void Dispose()
+    {
+        _interceptor.DisposeEvent();
     }
 }
