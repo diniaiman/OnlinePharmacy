@@ -1,10 +1,9 @@
 ﻿@page "/appointments/"
 @inject HttpClient _client
 @inject NavigationManager _navManager
-@inject HttpInterceptorService _interceptor
-@implements IDisposable
 @inject IJSRuntime js
 @attribute [Authorize]
+@implements IDisposable
 
 <h3 class="card-title">Skincare Appointments</h3>
 <br />
@@ -18,11 +17,11 @@
 
 @if (Appointments == null)
 {
-<div class="alert alert-info">Loading Appointments...</div>
+    <div class="alert alert-info">Loading Appointments...</div>
 }
 else
 {
-    <table class="table table-responsive">
+    <table class="table table-responsive" id="appointmentsTable">
         <thead>
             <tr>
                 <th>Appointment Id</th>
@@ -64,8 +63,17 @@ else
 
     protected async override Task OnInitializedAsync()
     {
-        _interceptor.MonitorEvent();
         Appointments = await _client.GetFromJsonAsync<List<Appointment>>($"{Endpoints.AppointmentsEndpoint}");
+    }
+
+    protected async override Task OnAfterRenderAsync(bool firsdRender)
+    {
+        await js.InvokeVoidAsync("AddDataTable", "#appointmentsTable");
+    }
+
+    public void Dispose()
+    {
+        js.InvokeVoidAsync("DataTablesDispose", "#appointmentsTable");
     }
 
     async Task Delete(int appointmentId)
@@ -80,10 +88,5 @@ else
                 await OnInitializedAsync();
             }
         }
-    }
-
-    public void Dispose()
-    {
-        _interceptor.DisposeEvent();
     }
 }
