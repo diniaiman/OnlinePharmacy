@@ -38,10 +38,12 @@
         </div>
 
         <div class="form-group">
-            <label>Date Of Birth: </label>
-            <div>
-                <InputText @bind-Value="@customer.DateOfBirth" class="form-control" />
-                <ValidationMessage For="@(() => customer.DateOfBirth)" />
+            <label>Date of Birth: </label>
+            <div class="form-group">
+                <div>
+                    <InputDate @bind-Value="@customer.DateOut" class="form-control" />
+                    <ValidationMessage For="@(() => customer.DateOut)" />
+                </div>
             </div>
         </div>
 
@@ -52,6 +54,7 @@
                 <ValidationMessage For="@(() => customer.Address)" />
             </div>
         </div>
+
     </fieldset>
 
     <br />
