@@ -43,10 +43,10 @@ else
                     <td>@product.Quantity</td>
                     <td>@product.Category</td>
                     <td>
-                        <a href="/product/view/@product.Id" class="btn btn-primary">
+                        <a href="/products/view/@product.Id" class="btn btn-primary">
                             <span class="oi oi-book"></span>
                         </a>
-                        <a href="/product/edit/@product.Id" class="btn btn-warning">
+                        <a href="/products/edit/@product.Id" class="btn btn-warning">
                             <span class="oi oi-pencil"></span>
                         </a>
                         <button class="btn btn-danger" @onclick="@(()=>Delete(product.Id))">
