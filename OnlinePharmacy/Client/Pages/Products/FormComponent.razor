@@ -1,45 +1,47 @@
-﻿@using OnlinePharmacy.Shared.Domain
-
+﻿@inject HttpClient _client
 
 <EditForm Model="@product" OnValidSubmit="@OnValidSubmit">
     <DataAnnotationsValidator />
     <ValidationSummary />
 
-    <div class="form-group">
-        <label>Name: </label>
-        <div>
-            <InputText @bind-Value="@product.Name" class="form-control" />
-            <ValidationMessage For="@(() => product.Name)" />
+    <fieldset disabled="@Disabled">
+        <div class="form-group">
+            <label>Name: </label>
+            <div>
+                <InputText @bind-Value="@product.Name" class="form-control" />
+                <ValidationMessage For="@(() => product.Name)" />
+            </div>
         </div>
-    </div>
-    <div class="form-group">
-        <label>Price: </label>
-        <div>
-            <InputNumber @bind-Value="@product.Price" class="form-control" />
-            <ValidationMessage For="@(() => product.Price)" />
+        <div class="form-group">
+            <label>Price: </label>
+            <div>
+                <InputNumber @bind-Value="@product.Price" class="form-control" />
+                <ValidationMessage For="@(() => product.Price)" />
+            </div>
         </div>
-    </div>
-    <div class="form-group">
-        <label>Description: </label>
-        <div>
-            <InputText @bind-Value="@product.Description" class="form-control" />
-            <ValidationMessage For="@(() => product.Description)" />
+        <div class="form-group">
+            <label>Description: </label>
+            <div>
+                <InputText @bind-Value="@product.Description" class="form-control" />
+                <ValidationMessage For="@(() => product.Description)" />
+            </div>
         </div>
-    </div>
-    <div class="form-group">
-        <label>Quantity: </label>
-        <div>
-            <InputNumber @bind-Value="@product.Quantity" class="form-control" />
-            <ValidationMessage For="@(() => product.Quantity)" />
+        <div class="form-group">
+            <label>Quantity: </label>
+            <div>
+                <InputNumber @bind-Value="@product.Quantity" class="form-control" />
+                <ValidationMessage For="@(() => product.Quantity)" />
+            </div>
         </div>
-    </div>
-    <div class="form-group">
-        <label>Category: </label>
-        <div>
-            <InputText @bind-Value="@product.Category" class="form-control" />
-            <ValidationMessage For="@(() => product.Category)" />
+        <div class="form-group">
+            <label>Category: </label>
+            <div>
+                <InputText @bind-Value="@product.Category" class="form-control" />
+                <ValidationMessage For="@(() => product.Category)" />
+            </div>
         </div>
-    </div>
+
+    </fieldset>
 
     <br />
     <br />
@@ -52,8 +54,8 @@
 
 
 @code {
+    [Parameter] public bool Disabled { get; set; } = false;
     [Parameter] public Product? product { get; set; }
     [Parameter] public string ButtonText { get; set; } = "Save";
     [Parameter] public EventCallback OnValidSubmit { get; set; }
-
 }
