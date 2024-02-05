@@ -46,9 +46,13 @@
     <br />
     <br />
 
-    <button type="submit" class="btn btn-success btn-block">
-        @ButtonText
-    </button>
+    @if (!Disabled)
+    {
+        <button type="submit" class="btn btn-success btn-block">
+            @ButtonText
+        </button>
+    }
+
     <BackToList Target="products" />
 </EditForm>
 

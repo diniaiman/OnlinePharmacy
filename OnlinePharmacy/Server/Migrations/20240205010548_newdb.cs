@@ -456,15 +456,15 @@ namespace OnlinePharmacy.Server.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "FirstName", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "3781efa7-66dc-47f0-860f-e506d04102e4", 0, "3dbb91fc-d560-417e-8876-ced0eba6a665", "admin@localhost.com", false, "Admin", "User", false, null, "ADMIN@LOCALHOST.COM", "ADMIN@LOCALHOST.COM", "AQAAAAIAAYagAAAAEJPc9JB+qoryGCfwGsqI7JCTKgGrrxcva5dke/VgkItymXvFBwIxmecnsL0U97t6UA==", null, false, "31df9002-062c-4de0-bfe5-e77eb3a40e49", false, "admin@localhost.com" });
+                values: new object[] { "3781efa7-66dc-47f0-860f-e506d04102e4", 0, "6437ad60-52b3-4a17-9184-d1a195710b94", "admin@localhost.com", false, "Admin", "User", false, null, "ADMIN@LOCALHOST.COM", "ADMIN@LOCALHOST.COM", "AQAAAAIAAYagAAAAEHvCHyU76z029BN+FDpdkw8SRf6YW3oeOxCqj9dOuSxE4H2Dyl9Z9IShFsb8D2ElJA==", null, false, "37e70d56-129e-4b13-b9e5-6e2709eeb4b6", false, "admin@localhost.com" });
 
             migrationBuilder.InsertData(
                 table: "Products",
                 columns: new[] { "Id", "Category", "CreatedBy", "DateCreated", "DateUpdated", "Description", "Name", "Price", "Quantity", "UpdatedBy" },
                 values: new object[,]
                 {
-                    { 1, "Cleansers", "System", new DateTime(2024, 2, 3, 22, 22, 56, 287, DateTimeKind.Local).AddTicks(9919), new DateTime(2024, 2, 3, 22, 22, 56, 287, DateTimeKind.Local).AddTicks(9929), "Description", "CeraVe Cleanser", 20.0, 9, "System" },
-                    { 2, "Moisturizers", "System", new DateTime(2024, 2, 3, 22, 22, 56, 287, DateTimeKind.Local).AddTicks(9933), new DateTime(2024, 2, 3, 22, 22, 56, 287, DateTimeKind.Local).AddTicks(9933), "Description", "Cetaphil Moisturizer", 20.0, 8, "System" }
+                    { 1, "Cleansers", "System", new DateTime(2024, 2, 5, 9, 5, 48, 96, DateTimeKind.Local).AddTicks(3201), new DateTime(2024, 2, 5, 9, 5, 48, 96, DateTimeKind.Local).AddTicks(3219), "Description", "CeraVe Cleanser", 20.0, 9, "System" },
+                    { 2, "Moisturizers", "System", new DateTime(2024, 2, 5, 9, 5, 48, 96, DateTimeKind.Local).AddTicks(3226), new DateTime(2024, 2, 5, 9, 5, 48, 96, DateTimeKind.Local).AddTicks(3227), "Description", "Cetaphil Moisturizer", 20.0, 8, "System" }
                 });
 
             migrationBuilder.InsertData(
