@@ -9,10 +9,20 @@ namespace OnlinePharmacy.Shared.Domain
 {
     public class Customer : BaseDomainModel
     {
+        [Required]
+        [StringLength(100, MinimumLength = 2, ErrorMessage = "Name does not meet length requirements")]
         public string? Username { get; set; }
+        [Required]
+        [DataType(DataType.EmailAddress, ErrorMessage = "Email is not a valid")]
+        [EmailAddress]
         public string? Email { get; set; }
         public string? Address { get; set; }
+        [Required]
+        [DataType(DataType.PhoneNumber)]
+        [RegularExpression(@"(6|8|9)\d{7}", ErrorMessage = "Contact Number is not a valid phone number")]
         public string? PhoneNo { get; set; }
+        [Required]
+        [StringLength(100, MinimumLength = 2, ErrorMessage = "Gender does not meet length requirements")]
         public string? Gender { get; set; }
 
         [Required]

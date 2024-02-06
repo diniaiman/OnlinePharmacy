@@ -12,7 +12,7 @@ using OnlinePharmacy.Server.Data;
 namespace OnlinePharmacy.Server.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240205010548_newdb")]
+    [Migration("20240206025924_newdb")]
     partial class newdb
     {
         /// <inheritdoc />
@@ -399,7 +399,7 @@ namespace OnlinePharmacy.Server.Migrations
                         {
                             Id = "3781efa7-66dc-47f0-860f-e506d04102e4",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "6437ad60-52b3-4a17-9184-d1a195710b94",
+                            ConcurrencyStamp = "b506a301-90f9-4308-98fd-9ba451e551d6",
                             Email = "admin@localhost.com",
                             EmailConfirmed = false,
                             FirstName = "Admin",
@@ -407,9 +407,9 @@ namespace OnlinePharmacy.Server.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@LOCALHOST.COM",
                             NormalizedUserName = "ADMIN@LOCALHOST.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEHvCHyU76z029BN+FDpdkw8SRf6YW3oeOxCqj9dOuSxE4H2Dyl9Z9IShFsb8D2ElJA==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEKq76Wv/5Zud8xn1OpAGvikQZhgExcDtboKhSxLHUYaQ8n0e1tra4KyMtgwbXiX81g==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "37e70d56-129e-4b13-b9e5-6e2709eeb4b6",
+                            SecurityStamp = "3d19c54a-3b74-4693-ad0f-6fd97d0e361c",
                             TwoFactorEnabled = false,
                             UserName = "admin@localhost.com"
                         });
@@ -484,19 +484,25 @@ namespace OnlinePharmacy.Server.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Email")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Gender")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<string>("PhoneNo")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("UpdatedBy")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Username")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.HasKey("Id");
 
@@ -724,8 +730,8 @@ namespace OnlinePharmacy.Server.Migrations
                             Id = 1,
                             Category = "Cleansers",
                             CreatedBy = "System",
-                            DateCreated = new DateTime(2024, 2, 5, 9, 5, 48, 96, DateTimeKind.Local).AddTicks(3201),
-                            DateUpdated = new DateTime(2024, 2, 5, 9, 5, 48, 96, DateTimeKind.Local).AddTicks(3219),
+                            DateCreated = new DateTime(2024, 2, 6, 10, 59, 24, 72, DateTimeKind.Local).AddTicks(2963),
+                            DateUpdated = new DateTime(2024, 2, 6, 10, 59, 24, 72, DateTimeKind.Local).AddTicks(2975),
                             Description = "Description",
                             Name = "CeraVe Cleanser",
                             Price = 20.0,
@@ -737,8 +743,8 @@ namespace OnlinePharmacy.Server.Migrations
                             Id = 2,
                             Category = "Moisturizers",
                             CreatedBy = "System",
-                            DateCreated = new DateTime(2024, 2, 5, 9, 5, 48, 96, DateTimeKind.Local).AddTicks(3226),
-                            DateUpdated = new DateTime(2024, 2, 5, 9, 5, 48, 96, DateTimeKind.Local).AddTicks(3227),
+                            DateCreated = new DateTime(2024, 2, 6, 10, 59, 24, 72, DateTimeKind.Local).AddTicks(2979),
+                            DateUpdated = new DateTime(2024, 2, 6, 10, 59, 24, 72, DateTimeKind.Local).AddTicks(2980),
                             Description = "Description",
                             Name = "Cetaphil Moisturizer",
                             Price = 20.0,
