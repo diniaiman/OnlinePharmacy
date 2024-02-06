@@ -396,11 +396,7 @@ namespace OnlinePharmacy.Server.Migrations
                         {
                             Id = "3781efa7-66dc-47f0-860f-e506d04102e4",
                             AccessFailedCount = 0,
-<<<<<<< HEAD
-                            ConcurrencyStamp = "b506a301-90f9-4308-98fd-9ba451e551d6",
-=======
-                            ConcurrencyStamp = "c8ac8058-e0fe-4427-80de-46e6f5712527",
->>>>>>> 2d156d0dc797df6e8f5e8d6faa505fe00a6e9193
+                            ConcurrencyStamp = "eb36bdc3-317a-4142-819f-62c3dec1ccb4",
                             Email = "admin@localhost.com",
                             EmailConfirmed = false,
                             FirstName = "Admin",
@@ -408,15 +404,9 @@ namespace OnlinePharmacy.Server.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@LOCALHOST.COM",
                             NormalizedUserName = "ADMIN@LOCALHOST.COM",
-<<<<<<< HEAD
-                            PasswordHash = "AQAAAAIAAYagAAAAEKq76Wv/5Zud8xn1OpAGvikQZhgExcDtboKhSxLHUYaQ8n0e1tra4KyMtgwbXiX81g==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEC2yh2MW+g8A8FUgq8wNshqCOugm2vBDfG9itL+lal36s6hpcKBzb6YNu0wvB2aSiw==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "3d19c54a-3b74-4693-ad0f-6fd97d0e361c",
-=======
-                            PasswordHash = "AQAAAAIAAYagAAAAEKN8r7yQPVObEGN/TZwuh5F8EAZzXfSa1MqXYy+7d7Ee6xvBTKs4BOupVzm5XH5ftA==",
-                            PhoneNumberConfirmed = false,
-                            SecurityStamp = "9d3269bf-e1b5-4eb3-8067-8407b7f65da3",
->>>>>>> 2d156d0dc797df6e8f5e8d6faa505fe00a6e9193
+                            SecurityStamp = "ae6422ca-ef42-4b3c-a0aa-b56dae683ec6",
                             TwoFactorEnabled = false,
                             UserName = "admin@localhost.com"
                         });
@@ -701,7 +691,9 @@ namespace OnlinePharmacy.Server.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Category")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<string>("CreatedBy")
                         .HasColumnType("nvarchar(max)");
@@ -713,12 +705,18 @@ namespace OnlinePharmacy.Server.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<double?>("Price")
+                        .IsRequired()
+                        .HasMaxLength(100)
                         .HasColumnType("float");
 
                     b.Property<int?>("Quantity")
@@ -737,13 +735,8 @@ namespace OnlinePharmacy.Server.Migrations
                             Id = 1,
                             Category = "Cleanser",
                             CreatedBy = "System",
-<<<<<<< HEAD
-                            DateCreated = new DateTime(2024, 2, 6, 10, 59, 24, 72, DateTimeKind.Local).AddTicks(2963),
-                            DateUpdated = new DateTime(2024, 2, 6, 10, 59, 24, 72, DateTimeKind.Local).AddTicks(2975),
-=======
-                            DateCreated = new DateTime(2024, 2, 6, 11, 8, 55, 665, DateTimeKind.Local).AddTicks(5082),
-                            DateUpdated = new DateTime(2024, 2, 6, 11, 8, 55, 665, DateTimeKind.Local).AddTicks(5092),
->>>>>>> 2d156d0dc797df6e8f5e8d6faa505fe00a6e9193
+                            DateCreated = new DateTime(2024, 2, 6, 14, 19, 8, 132, DateTimeKind.Local).AddTicks(333),
+                            DateUpdated = new DateTime(2024, 2, 6, 14, 19, 8, 132, DateTimeKind.Local).AddTicks(345),
                             Description = "Description",
                             Name = "CeraVe Cleanser",
                             Price = 25.5,
@@ -755,13 +748,8 @@ namespace OnlinePharmacy.Server.Migrations
                             Id = 2,
                             Category = "Moisturizer",
                             CreatedBy = "System",
-<<<<<<< HEAD
-                            DateCreated = new DateTime(2024, 2, 6, 10, 59, 24, 72, DateTimeKind.Local).AddTicks(2979),
-                            DateUpdated = new DateTime(2024, 2, 6, 10, 59, 24, 72, DateTimeKind.Local).AddTicks(2980),
-=======
-                            DateCreated = new DateTime(2024, 2, 6, 11, 8, 55, 665, DateTimeKind.Local).AddTicks(5095),
-                            DateUpdated = new DateTime(2024, 2, 6, 11, 8, 55, 665, DateTimeKind.Local).AddTicks(5095),
->>>>>>> 2d156d0dc797df6e8f5e8d6faa505fe00a6e9193
+                            DateCreated = new DateTime(2024, 2, 6, 14, 19, 8, 132, DateTimeKind.Local).AddTicks(348),
+                            DateUpdated = new DateTime(2024, 2, 6, 14, 19, 8, 132, DateTimeKind.Local).AddTicks(349),
                             Description = "Description",
                             Name = "Cetaphil Moisturizer",
                             Price = 20.0,
@@ -773,8 +761,8 @@ namespace OnlinePharmacy.Server.Migrations
                             Id = 3,
                             Category = "Exfoliant",
                             CreatedBy = "System",
-                            DateCreated = new DateTime(2024, 2, 6, 11, 8, 55, 665, DateTimeKind.Local).AddTicks(5097),
-                            DateUpdated = new DateTime(2024, 2, 6, 11, 8, 55, 665, DateTimeKind.Local).AddTicks(5098),
+                            DateCreated = new DateTime(2024, 2, 6, 14, 19, 8, 132, DateTimeKind.Local).AddTicks(351),
+                            DateUpdated = new DateTime(2024, 2, 6, 14, 19, 8, 132, DateTimeKind.Local).AddTicks(351),
                             Description = "Description",
                             Name = "Paula's Choice Exfoliant",
                             Price = 30.0,
@@ -786,8 +774,8 @@ namespace OnlinePharmacy.Server.Migrations
                             Id = 4,
                             Category = "Sunscreen",
                             CreatedBy = "System",
-                            DateCreated = new DateTime(2024, 2, 6, 11, 8, 55, 665, DateTimeKind.Local).AddTicks(5101),
-                            DateUpdated = new DateTime(2024, 2, 6, 11, 8, 55, 665, DateTimeKind.Local).AddTicks(5102),
+                            DateCreated = new DateTime(2024, 2, 6, 14, 19, 8, 132, DateTimeKind.Local).AddTicks(353),
+                            DateUpdated = new DateTime(2024, 2, 6, 14, 19, 8, 132, DateTimeKind.Local).AddTicks(353),
                             Description = "Description",
                             Name = "Cetaphil Sunscreen",
                             Price = 15.0,
@@ -799,8 +787,8 @@ namespace OnlinePharmacy.Server.Migrations
                             Id = 5,
                             Category = "Exfoliant",
                             CreatedBy = "System",
-                            DateCreated = new DateTime(2024, 2, 6, 11, 8, 55, 665, DateTimeKind.Local).AddTicks(5103),
-                            DateUpdated = new DateTime(2024, 2, 6, 11, 8, 55, 665, DateTimeKind.Local).AddTicks(5104),
+                            DateCreated = new DateTime(2024, 2, 6, 14, 19, 8, 132, DateTimeKind.Local).AddTicks(355),
+                            DateUpdated = new DateTime(2024, 2, 6, 14, 19, 8, 132, DateTimeKind.Local).AddTicks(355),
                             Description = "Description",
                             Name = "La Roche Posay Exfoliant",
                             Price = 35.5,
@@ -812,8 +800,8 @@ namespace OnlinePharmacy.Server.Migrations
                             Id = 6,
                             Category = "Moisturizer",
                             CreatedBy = "System",
-                            DateCreated = new DateTime(2024, 2, 6, 11, 8, 55, 665, DateTimeKind.Local).AddTicks(5106),
-                            DateUpdated = new DateTime(2024, 2, 6, 11, 8, 55, 665, DateTimeKind.Local).AddTicks(5106),
+                            DateCreated = new DateTime(2024, 2, 6, 14, 19, 8, 132, DateTimeKind.Local).AddTicks(357),
+                            DateUpdated = new DateTime(2024, 2, 6, 14, 19, 8, 132, DateTimeKind.Local).AddTicks(358),
                             Description = "Description",
                             Name = "CeraVe Moisturizer",
                             Price = 25.0,
@@ -825,8 +813,8 @@ namespace OnlinePharmacy.Server.Migrations
                             Id = 7,
                             Category = "Sunscreen",
                             CreatedBy = "System",
-                            DateCreated = new DateTime(2024, 2, 6, 11, 8, 55, 665, DateTimeKind.Local).AddTicks(5108),
-                            DateUpdated = new DateTime(2024, 2, 6, 11, 8, 55, 665, DateTimeKind.Local).AddTicks(5108),
+                            DateCreated = new DateTime(2024, 2, 6, 14, 19, 8, 132, DateTimeKind.Local).AddTicks(359),
+                            DateUpdated = new DateTime(2024, 2, 6, 14, 19, 8, 132, DateTimeKind.Local).AddTicks(359),
                             Description = "Description",
                             Name = "CeraVe Sunscreen",
                             Price = 20.0,
