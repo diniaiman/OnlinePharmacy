@@ -456,15 +456,20 @@ namespace OnlinePharmacy.Server.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "FirstName", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "3781efa7-66dc-47f0-860f-e506d04102e4", 0, "6437ad60-52b3-4a17-9184-d1a195710b94", "admin@localhost.com", false, "Admin", "User", false, null, "ADMIN@LOCALHOST.COM", "ADMIN@LOCALHOST.COM", "AQAAAAIAAYagAAAAEHvCHyU76z029BN+FDpdkw8SRf6YW3oeOxCqj9dOuSxE4H2Dyl9Z9IShFsb8D2ElJA==", null, false, "37e70d56-129e-4b13-b9e5-6e2709eeb4b6", false, "admin@localhost.com" });
+                values: new object[] { "3781efa7-66dc-47f0-860f-e506d04102e4", 0, "c8ac8058-e0fe-4427-80de-46e6f5712527", "admin@localhost.com", false, "Admin", "User", false, null, "ADMIN@LOCALHOST.COM", "ADMIN@LOCALHOST.COM", "AQAAAAIAAYagAAAAEKN8r7yQPVObEGN/TZwuh5F8EAZzXfSa1MqXYy+7d7Ee6xvBTKs4BOupVzm5XH5ftA==", null, false, "9d3269bf-e1b5-4eb3-8067-8407b7f65da3", false, "admin@localhost.com" });
 
             migrationBuilder.InsertData(
                 table: "Products",
                 columns: new[] { "Id", "Category", "CreatedBy", "DateCreated", "DateUpdated", "Description", "Name", "Price", "Quantity", "UpdatedBy" },
                 values: new object[,]
                 {
-                    { 1, "Cleansers", "System", new DateTime(2024, 2, 5, 9, 5, 48, 96, DateTimeKind.Local).AddTicks(3201), new DateTime(2024, 2, 5, 9, 5, 48, 96, DateTimeKind.Local).AddTicks(3219), "Description", "CeraVe Cleanser", 20.0, 9, "System" },
-                    { 2, "Moisturizers", "System", new DateTime(2024, 2, 5, 9, 5, 48, 96, DateTimeKind.Local).AddTicks(3226), new DateTime(2024, 2, 5, 9, 5, 48, 96, DateTimeKind.Local).AddTicks(3227), "Description", "Cetaphil Moisturizer", 20.0, 8, "System" }
+                    { 1, "Cleanser", "System", new DateTime(2024, 2, 6, 11, 8, 55, 665, DateTimeKind.Local).AddTicks(5082), new DateTime(2024, 2, 6, 11, 8, 55, 665, DateTimeKind.Local).AddTicks(5092), "Description", "CeraVe Cleanser", 25.5, 9, "System" },
+                    { 2, "Moisturizer", "System", new DateTime(2024, 2, 6, 11, 8, 55, 665, DateTimeKind.Local).AddTicks(5095), new DateTime(2024, 2, 6, 11, 8, 55, 665, DateTimeKind.Local).AddTicks(5095), "Description", "Cetaphil Moisturizer", 20.0, 8, "System" },
+                    { 3, "Exfoliant", "System", new DateTime(2024, 2, 6, 11, 8, 55, 665, DateTimeKind.Local).AddTicks(5097), new DateTime(2024, 2, 6, 11, 8, 55, 665, DateTimeKind.Local).AddTicks(5098), "Description", "Paula's Choice Exfoliant", 30.0, 9, "System" },
+                    { 4, "Sunscreen", "System", new DateTime(2024, 2, 6, 11, 8, 55, 665, DateTimeKind.Local).AddTicks(5101), new DateTime(2024, 2, 6, 11, 8, 55, 665, DateTimeKind.Local).AddTicks(5102), "Description", "Cetaphil Sunscreen", 15.0, 9, "System" },
+                    { 5, "Exfoliant", "System", new DateTime(2024, 2, 6, 11, 8, 55, 665, DateTimeKind.Local).AddTicks(5103), new DateTime(2024, 2, 6, 11, 8, 55, 665, DateTimeKind.Local).AddTicks(5104), "Description", "La Roche Posay Exfoliant", 35.5, 9, "System" },
+                    { 6, "Moisturizer", "System", new DateTime(2024, 2, 6, 11, 8, 55, 665, DateTimeKind.Local).AddTicks(5106), new DateTime(2024, 2, 6, 11, 8, 55, 665, DateTimeKind.Local).AddTicks(5106), "Description", "CeraVe Moisturizer", 25.0, 8, "System" },
+                    { 7, "Sunscreen", "System", new DateTime(2024, 2, 6, 11, 8, 55, 665, DateTimeKind.Local).AddTicks(5108), new DateTime(2024, 2, 6, 11, 8, 55, 665, DateTimeKind.Local).AddTicks(5108), "Description", "CeraVe Sunscreen", 20.0, 9, "System" }
                 });
 
             migrationBuilder.InsertData(

@@ -396,7 +396,7 @@ namespace OnlinePharmacy.Server.Migrations
                         {
                             Id = "3781efa7-66dc-47f0-860f-e506d04102e4",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "6437ad60-52b3-4a17-9184-d1a195710b94",
+                            ConcurrencyStamp = "c8ac8058-e0fe-4427-80de-46e6f5712527",
                             Email = "admin@localhost.com",
                             EmailConfirmed = false,
                             FirstName = "Admin",
@@ -404,9 +404,9 @@ namespace OnlinePharmacy.Server.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@LOCALHOST.COM",
                             NormalizedUserName = "ADMIN@LOCALHOST.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEHvCHyU76z029BN+FDpdkw8SRf6YW3oeOxCqj9dOuSxE4H2Dyl9Z9IShFsb8D2ElJA==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEKN8r7yQPVObEGN/TZwuh5F8EAZzXfSa1MqXYy+7d7Ee6xvBTKs4BOupVzm5XH5ftA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "37e70d56-129e-4b13-b9e5-6e2709eeb4b6",
+                            SecurityStamp = "9d3269bf-e1b5-4eb3-8067-8407b7f65da3",
                             TwoFactorEnabled = false,
                             UserName = "admin@localhost.com"
                         });
@@ -719,27 +719,92 @@ namespace OnlinePharmacy.Server.Migrations
                         new
                         {
                             Id = 1,
-                            Category = "Cleansers",
+                            Category = "Cleanser",
                             CreatedBy = "System",
-                            DateCreated = new DateTime(2024, 2, 5, 9, 5, 48, 96, DateTimeKind.Local).AddTicks(3201),
-                            DateUpdated = new DateTime(2024, 2, 5, 9, 5, 48, 96, DateTimeKind.Local).AddTicks(3219),
+                            DateCreated = new DateTime(2024, 2, 6, 11, 8, 55, 665, DateTimeKind.Local).AddTicks(5082),
+                            DateUpdated = new DateTime(2024, 2, 6, 11, 8, 55, 665, DateTimeKind.Local).AddTicks(5092),
                             Description = "Description",
                             Name = "CeraVe Cleanser",
-                            Price = 20.0,
+                            Price = 25.5,
                             Quantity = 9,
                             UpdatedBy = "System"
                         },
                         new
                         {
                             Id = 2,
-                            Category = "Moisturizers",
+                            Category = "Moisturizer",
                             CreatedBy = "System",
-                            DateCreated = new DateTime(2024, 2, 5, 9, 5, 48, 96, DateTimeKind.Local).AddTicks(3226),
-                            DateUpdated = new DateTime(2024, 2, 5, 9, 5, 48, 96, DateTimeKind.Local).AddTicks(3227),
+                            DateCreated = new DateTime(2024, 2, 6, 11, 8, 55, 665, DateTimeKind.Local).AddTicks(5095),
+                            DateUpdated = new DateTime(2024, 2, 6, 11, 8, 55, 665, DateTimeKind.Local).AddTicks(5095),
                             Description = "Description",
                             Name = "Cetaphil Moisturizer",
                             Price = 20.0,
                             Quantity = 8,
+                            UpdatedBy = "System"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Category = "Exfoliant",
+                            CreatedBy = "System",
+                            DateCreated = new DateTime(2024, 2, 6, 11, 8, 55, 665, DateTimeKind.Local).AddTicks(5097),
+                            DateUpdated = new DateTime(2024, 2, 6, 11, 8, 55, 665, DateTimeKind.Local).AddTicks(5098),
+                            Description = "Description",
+                            Name = "Paula's Choice Exfoliant",
+                            Price = 30.0,
+                            Quantity = 9,
+                            UpdatedBy = "System"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Category = "Sunscreen",
+                            CreatedBy = "System",
+                            DateCreated = new DateTime(2024, 2, 6, 11, 8, 55, 665, DateTimeKind.Local).AddTicks(5101),
+                            DateUpdated = new DateTime(2024, 2, 6, 11, 8, 55, 665, DateTimeKind.Local).AddTicks(5102),
+                            Description = "Description",
+                            Name = "Cetaphil Sunscreen",
+                            Price = 15.0,
+                            Quantity = 9,
+                            UpdatedBy = "System"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Category = "Exfoliant",
+                            CreatedBy = "System",
+                            DateCreated = new DateTime(2024, 2, 6, 11, 8, 55, 665, DateTimeKind.Local).AddTicks(5103),
+                            DateUpdated = new DateTime(2024, 2, 6, 11, 8, 55, 665, DateTimeKind.Local).AddTicks(5104),
+                            Description = "Description",
+                            Name = "La Roche Posay Exfoliant",
+                            Price = 35.5,
+                            Quantity = 9,
+                            UpdatedBy = "System"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Category = "Moisturizer",
+                            CreatedBy = "System",
+                            DateCreated = new DateTime(2024, 2, 6, 11, 8, 55, 665, DateTimeKind.Local).AddTicks(5106),
+                            DateUpdated = new DateTime(2024, 2, 6, 11, 8, 55, 665, DateTimeKind.Local).AddTicks(5106),
+                            Description = "Description",
+                            Name = "CeraVe Moisturizer",
+                            Price = 25.0,
+                            Quantity = 8,
+                            UpdatedBy = "System"
+                        },
+                        new
+                        {
+                            Id = 7,
+                            Category = "Sunscreen",
+                            CreatedBy = "System",
+                            DateCreated = new DateTime(2024, 2, 6, 11, 8, 55, 665, DateTimeKind.Local).AddTicks(5108),
+                            DateUpdated = new DateTime(2024, 2, 6, 11, 8, 55, 665, DateTimeKind.Local).AddTicks(5108),
+                            Description = "Description",
+                            Name = "CeraVe Sunscreen",
+                            Price = 20.0,
+                            Quantity = 9,
                             UpdatedBy = "System"
                         });
                 });
